@@ -4,7 +4,7 @@ MyDocs/**
 Databases/**
 **/.idea
 *.csv
-
+**/*.csv
 # Visual Studio files/folders ignore
 
 ## Ignore Visual Studio temporary files, build results, and
