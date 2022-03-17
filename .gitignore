@@ -1,7 +1,6 @@
 # My selected files/folders ignore
 
-MyDocs
-
+MyDocs/**
 
 
 # Visual Studio files/folders ignore
