@@ -54,6 +54,8 @@ Conclusion sur le projet complet.
 
 ## Documentations
 
+`look at the word document`
+<!--
 [Facial expression definition Wikipedia](https://en.wikipedia.org/wiki/Facial_expression)  
 [Deep Learning definition Wikipedia](https://en.wikipedia.org/wiki/Deep_learning)  
 [Database links wikipedia](https://en.wikipedia.org/wiki/List_of_facial_expression_databases#:~:text=A%20facial%20expression%20database%20is,development%20of%20expression%20recognition%20systems)  
@@ -62,6 +64,8 @@ Conclusion sur le projet complet.
 [Kaggle](https://www.kaggle.com/msambare/fer2013)  
 [Google facial expression comparison set](https://research.google/tools/datasets/google-facial-expression/)  
 [Datasets list](https://analyticsindiamag.com/top-8-datasets-available-for-emotion-detection/)  
+[Video about CNN, RNN and ANN](https://www.youtube.com/watch?v=u7obuspdQu4)  
+-->
 
 ## Collaborateurs
 
