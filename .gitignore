@@ -2,7 +2,7 @@
 
 MyDocs/**
 Databases/**
-
+*.csv
 
 # Visual Studio files/folders ignore
 
