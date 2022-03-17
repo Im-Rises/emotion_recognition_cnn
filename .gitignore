@@ -3,6 +3,7 @@
 MyDocs/**
 Databases/**
 **/.idea
+*.csv
 
 # Visual Studio files/folders ignore
 
