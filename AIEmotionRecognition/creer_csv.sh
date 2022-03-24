@@ -18,7 +18,7 @@ if [ $# == 2 ]; then
 		images=$(ls $locationDataBase$emo)
 		for image in $images
 		do 
-			echo "$nombreLignes,$emo,$locationDataBase$emo$image" >> $nomFichier
+			echo "$nombreLignes,$emo,$locationDataBase$emo/$image" >> $nomFichier
 			let "nombreLignes+=1"
 		done
 	done
