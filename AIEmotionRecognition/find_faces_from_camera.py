@@ -19,7 +19,7 @@ while( cap.isOpened() ):
         )
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        if(x is not None and y is not None):
+        if x is not None and y is not None:
             font = cv2.FONT_HERSHEY_SIMPLEX
             org = (x, y)
             fontScale = 0.3
