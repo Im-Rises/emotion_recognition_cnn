@@ -1,49 +1,37 @@
 # AIEmotionRecognition
 
-Programme pour l'utilisation du Deep Learning pour la reconnaissance des états émotionnel de personne via des images.
+## Description
 
-## Etapes du projet
+Deep Learning Project made in python for the recognition of emotion of a person.
 
-### Chapitre 1 : Introduction
+Our goal is to obtein a minimum 90% accuracy on emotion recognition from any pictures.
+The app need to be able to analyse facial expression dicretly by analysing one image or by analysing frame by frame a video.  
+Finding all visbiles faces and give the current emotion of the person base on the six main facial expressions :
+- Sadness
+- Happiness
+- Fear
+- Anger
+- Surprise
+- Disgust
 
-1. Recherche sur le contexte et la problématique du projet.  
-2. Recherche des BDD pour la reconnsaissance émotionnelle (BDD existantes, nombre d'images, nombre d'états émotionnels, etc...).  
+The app is using the CNN (Convolutional neural network) to analyse the emotion of a person.
+It will learn from different databases that contains several images of persons showing one of the six main emotion.
+The AI learn from this database by analysing each image, once done our model is able to analyse faces images out of the database.
 
-### Chapitre 2 : Reconnaissance émotionnelle
+## Features
 
-Recherche bibliographique sur la reconnaissance d'émotion (systèmes, méthodes, solutions, exemple d'architecture/programme).  
-Présentation des approches basées sur le Deep Learning.
+- Analyse images/videos and foud every faces.
+- Display emotion of a person based on facial expression.
 
-### Chapitre 3 : Deep Learning
+## Report
 
-Explication sur le principe du Deep Learning avec présentaiton de ses divers types de réseaux de neurones :
-
-- CNN
-- ANN
-- RNN
-
-Présentation de diverses architectures du Deep Learning comme, LeNet, GoogLeNet, ReNet, ZFNet, etc...
-
-### Chapitre 4 : Méthodes proposées
-
-Utilisation des architectures trouvées et analyse de leurs résultats.  
-Création d'algorithme de mixage des architectures pour la création de programme hybride pour l'obtention d'un algorithme avec les meilleurs résultats possible.
-
-### Chapitre 5 : Conclusion
-
-Conclusion sur le projet complet.
-
-## Etapes achevées
-
-- [ ] Chapitre 1
-- [ ] Chapitre 2
-- [ ] Chapitre 3
-- [ ] Chapitre 4
-- [ ] Chapitre 5
-
-## Rapport
-
+The report is written in french. No other languages are available.  
 [Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
+
+## Documentations
+
+<https://www.youtube.com/watch?v=u7obuspdQu4>  
+<https://www.datacorner.fr/reco-faciale-opencv/>  
 
 ## Databases
 
@@ -52,29 +40,23 @@ Conclusion sur le projet complet.
 [CKPLUS](https://www.kaggle.com/shawon10/ckplus)  
 [FER-2013](https://www.kaggle.com/msambare/fer2013)  
 
-## Documentations
+## Architectures
 
-`look at the word document`
-<!--
-[Facial expression definition Wikipedia](https://en.wikipedia.org/wiki/Facial_expression)  
-[Deep Learning definition Wikipedia](https://en.wikipedia.org/wiki/Deep_learning)  
-[Database links wikipedia](https://en.wikipedia.org/wiki/List_of_facial_expression_databases#:~:text=A%20facial%20expression%20database%20is,development%20of%20expression%20recognition%20systems)  
-[Student thesis](https://tel.archives-ouvertes.fr/tel-02077681/document)  
-[Enjeux de la reconnaissance facial](https://hellofuture.orange.com/fr/de-meilleures-interactions-avec-la-reconnaissance-automatique-des-emotions/)  
-[Kaggle](https://www.kaggle.com/msambare/fer2013)  
-[Google facial expression comparison set](https://research.google/tools/datasets/google-facial-expression/)  
-[Datasets list](https://analyticsindiamag.com/top-8-datasets-available-for-emotion-detection/)  
-[Video about CNN, RNN and ANN](https://www.youtube.com/watch?v=u7obuspdQu4)  
--->
+[Resnet](https://www.kaggle.com/datasets/keras/resnet50/code?resource=download)  
 
 ## Collaborateurs
 
-@clementreiffers  
-<https://github.com/clementreiffers>
+Quentin MOREL :
 
-@YohanCohen-Solal  
-<https://github.com/YohanCohen-Solal>
+- @Im-Rises
+- <https://github.com/Im-Rises>
 
-## Citations
+Clément REIFFERS :  
 
-R Vemulapalli, A Agarwala, “A Compact Embedding for Facial Expression Similarity”, CoRR, abs/1811.11283, 2018.
+- @clementreiffers  
+- <https://github.com/clementreiffers>
+
+Yohan COHEN-SOLAL :
+
+- @YohanCohen-Solal  
+- <https://github.com/YohanCohen-Solal>
