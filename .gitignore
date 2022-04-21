@@ -5,6 +5,8 @@ Databases/**
 **/.idea
 *.csv
 **/*.csv
+/Installers
+
 # Visual Studio files/folders ignore
 
 ## Ignore Visual Studio temporary files, build results, and

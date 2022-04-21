@@ -33,6 +33,39 @@ The report is written in french. No other languages are available.
 <https://www.youtube.com/watch?v=u7obuspdQu4>  
 <https://www.datacorner.fr/reco-faciale-opencv/>  
 
+## Installation
+
+### CUDA and co installation
+
+Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
+The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
+
+Check compatible version with your tensorflow :  
+<https://www.tensorflow.org/install/source#gpu>  
+<https://www.tensorflow.org/install/source_windows>  
+
+Visual Studio :  
+<https://visualstudio.microsoft.com/fr/downloads/>
+
+CUDA :  
+<https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/>  
+
+cuDNN :  
+<https://developer.nvidia.com/cudnn>
+
+Tensorflow :  
+<https://www.tensorflow.org/install/gpu>
+
+### Version of libs used
+
+- Visual Studio 2022
+- CUDA 11.2
+- cuDNN 8.1
+- tensorflow_gpu-2.6.0
+- keras 2.6
+
+!!! Tensorflow install keras 2.7 or higher, make sure to reinstall keras 2.6 !!!
+
 ## Databases
 
 [Google facial expression comparison dataset](https://research.google/tools/datasets/google-facial-expression/)  

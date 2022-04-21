@@ -2,23 +2,18 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
 import itertools
 
-np.random.seed(2)
-
-import keras
-from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ReduceLROnPlateau
 from keras.utils.np_utils import to_categorical
 from keras.models import Sequential
 import keras.optimizers
-from keras.layers.convolutional import Conv2D, MaxPooling2D, SeparableConv2D
+from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.layers.core import Dropout, Flatten, Dense
 from keras.layers import BatchNormalization
-from keras.layers import Input
+
+np.random.seed(2)
 
 
 def preprocess(X):
@@ -61,6 +56,7 @@ def plot_confusion_matrix(cm, classes,
     confusion_mtx = confusion_matrix(Y_true, Y_pred_classes)
     # plot the confusion matrix
     plot_confusion_matrix(confusion_mtx, classes=range(10))
+
 
 # Source : https://github.com/pranjalrai-iitd/FER2013-Facial-Emotion-Recognition-/blob/master/emotion.ipynb
 
@@ -138,7 +134,7 @@ if __name__ == '__main__':
     optimizer = keras.optimizers.adam_v2.Adam(lr=0.001)
     lr_anneal = ReduceLROnPlateau(monitor='val_accuracy', patience=3, factor=0.2, min_lr=1e-6)
     model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-    history = model.fit(X_train, Y_train, validation_data=[X_val, Y_val], epochs=50, batch_size=100,
+    history = model.fit(X_train, Y_train, validation_data=(X_val, Y_val), epochs=50, batch_size=100,
                         callbacks=[lr_anneal])
 
     fig, ax = plt.subplots(2, 1)
