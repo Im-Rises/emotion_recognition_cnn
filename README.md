@@ -1,4 +1,4 @@
-# AIEmotionRecognition
+# emotion_recognition_cnn
 
 ## Description
 
@@ -7,6 +7,7 @@ Deep Learning Project made in python for the recognition of emotion of a person.
 Our goal is to obtein a minimum 90% accuracy on emotion recognition from any pictures.
 The app need to be able to analyse facial expression dicretly by analysing one image or by analysing frame by frame a video.  
 Finding all visbiles faces and give the current emotion of the person base on the six main facial expressions :
+
 - Sadness
 - Happiness
 - Fear
