@@ -42,6 +42,12 @@ def load_dataset(path, dic):
     return X, y
 
 
+def preprocess_images(X):
+    X /= 255
+    X = X.reshape(len(X), 48, 48, 1)
+    return X
+
+
 if __name__ == '__main__':
     value_emotion_dic, emotion_value_dic = create_dictionary("../Databases/FER-2013/train/")
 
@@ -50,7 +56,16 @@ if __name__ == '__main__':
     test_path = "../Databases/FER-2013/test/"
     X_test, y_test = load_dataset(test_path, emotion_value_dic)
 
-    #
+    # Show an image
+    X_train = np.array(X_train)
+    plt.imshow(X_train[0].reshape(48, 48))
+    plt.title(value_emotion_dic[y_train[0]])
+    plt.gray()
+    plt.show()
+
+    # X_train = preprocess_images(X_train)
+    # X_test = preprocess_images(X_test)
+
     # try:
     #     cnn = load_model("savedModel")
     #     img = X_train[0]
