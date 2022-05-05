@@ -39,7 +39,7 @@ if __name__ == '__main__':
     X_train = X_train.reshape(60000, 28, 28, 1)
     X_test = X_test.reshape(10000, 28, 28, 1)
 
-    saved = False;
+    saved = False
     try:
         cnn = load_model("savedModel")
         saved = True
