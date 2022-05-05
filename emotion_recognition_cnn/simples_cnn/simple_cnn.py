@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     # Load train and test data
     (X_train, y_train), (X_test, y_test) = dataset_fashion_mnsit.load_data()
-
+    print(X_train[0])
     # Train data repartition
     print(pd.DataFrame(y_train)[0].value_counts())
 
@@ -39,18 +39,11 @@ if __name__ == '__main__':
     X_train = X_train.reshape(60000, 28, 28, 1)
     X_test = X_test.reshape(10000, 28, 28, 1)
 
-    saved = False
     try:
         cnn = load_model("savedModel")
-        saved = True
-    except:
-        saved = False
-
-    if saved:
-        # Predict test
         img = X_train[0]
         print("Image 0 prediction : {}".format(np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]))
-    else:
+    except:
         # CNN
         cnn = tf.keras.Sequential()
 
