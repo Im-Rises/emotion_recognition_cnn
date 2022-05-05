@@ -19,7 +19,7 @@ def count_expression(path, set_):
 
 if __name__ == '__main__':
     train_dir = '../Databases/FER-2013/train/'
-    test_dir = '../Databases/FER-2013/test/'
+    test_dir = '../Databases/FER-2013/train/'
     train_count = count_expression(train_dir, 'train_count')
     print(train_count)
     test_count = count_expression(test_dir, 'test')
