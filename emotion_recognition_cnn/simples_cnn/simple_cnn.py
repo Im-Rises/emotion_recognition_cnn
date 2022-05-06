@@ -41,7 +41,13 @@ if __name__ == '__main__':
 
     try:
         cnn = load_model("savedModel")
+        cnn.summary()
         img = X_train[0]
+        img_name = y_train[0]
+        plt.imshow(img)
+        plt.title(img_name)
+        plt.gray()
+        plt.show()
         print("Image 0 prediction : {}".format(np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]))
     except:
         # CNN
@@ -93,10 +99,16 @@ if __name__ == '__main__':
         losses[['accuracy', 'val_accuracy']].plot()
 
         losses[['loss', 'val_loss']].plot()
+        plt.show()
 
         # Predict test
         img = X_train[0]
+        img_name = y_train[0]
+        plt.imshow(img)
+        plt.title(img_name)
+        plt.gray()
+        plt.show()
         print("Image 0 prediction : {}".format(np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]))
 
         # Save last model
-        # cnn.save("savedModel")
+        cnn.save("savedModel")
