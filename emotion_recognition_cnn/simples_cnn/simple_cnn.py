@@ -75,6 +75,12 @@ if __name__ == '__main__':
                     metrics=['accuracy'])
         cnn.summary()
 
+        plt.imshow(X_train[0])
+        plt.gray()
+        plt.show()
+        print((X_train[0][14]))
+        print(type(X_train[0]))
+
         # Training
         cnn.fit(x=X_train,
                 y=y_train,
@@ -93,4 +99,4 @@ if __name__ == '__main__':
         print("Image 0 prediction : {}".format(np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]))
 
         # Save last model
-        cnn.save("savedModel")
+        # cnn.save("savedModel")
