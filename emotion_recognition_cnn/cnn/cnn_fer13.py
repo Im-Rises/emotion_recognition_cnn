@@ -76,7 +76,7 @@ if __name__ == '__main__':
     X_test, y_test = preprocess_images(X_test, y_test)
 
     try:
-        cnn = load_model("savedModel")
+        cnn = load_model(saved_model_name)
         cnn.summary()
         predict_image(X_test[1], y_test[1], value_emotion_dic)
 
