@@ -54,11 +54,18 @@ def show_image(image, title):
 
 
 def predict_image(img, emotion_value, dic):
-    predicted_emotion_value = np.argmax(cnn.predict(img.reshape(1, 48, 48, 1)), axis=-1)[0]
-    show_image(img, "Real : {}, Predicted : {}".format(dic[emotion_value], dic[predicted_emotion_value]))
+    predicted_emotion_value = np.argmax(
+        cnn.predict(img.reshape(1, 48, 48, 1)), axis=-1
+    )[0]
+    show_image(
+        img,
+        "Real : {}, Predicted : {}".format(
+            dic[emotion_value], dic[predicted_emotion_value]
+        ),
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     saved_model_name = "cnn_fern_model"
     image_shape = (48, 48, 1)
     train_path = "../../Databases/FER-2013/train/"
@@ -85,31 +92,54 @@ if __name__ == '__main__':
         cnn = tf.keras.Sequential()
 
         # 3 convolution layers with progressive filter 32, 64 and 128
-        cnn.add(Conv2D(filters=32, kernel_size=(3, 3), input_shape=image_shape, activation='relu'))
+        cnn.add(
+            Conv2D(
+                filters=32,
+                kernel_size=(3, 3),
+                input_shape=image_shape,
+                activation="relu",
+            )
+        )
         cnn.add(MaxPooling2D(pool_size=(2, 2)))
 
-        cnn.add(Conv2D(filters=64, kernel_size=(3, 3), input_shape=image_shape, activation='relu'))
+        cnn.add(
+            Conv2D(
+                filters=64,
+                kernel_size=(3, 3),
+                input_shape=image_shape,
+                activation="relu",
+            )
+        )
         cnn.add(MaxPooling2D(pool_size=(2, 2)))
 
-        cnn.add(Conv2D(filters=64, kernel_size=(3, 3), input_shape=image_shape, activation='relu'))
+        cnn.add(
+            Conv2D(
+                filters=64,
+                kernel_size=(3, 3),
+                input_shape=image_shape,
+                activation="relu",
+            )
+        )
         cnn.add(MaxPooling2D(pool_size=(2, 2)))
 
         # Flatten data
         cnn.add(Flatten())
 
         # ANN classic layer
-        cnn.add(Dense(512, activation='relu'))
+        cnn.add(Dense(512, activation="relu"))
 
         # Output layer (from 0 to 6)
-        cnn.add(Dense(7, activation='softmax'))
+        cnn.add(Dense(7, activation="softmax"))
 
         # earlyStopping to know the number of epoch to do.
-        early_stop = EarlyStopping(monitor='val_loss', patience=2)
+        early_stop = EarlyStopping(monitor="val_loss", patience=2)
 
         # Compilate CNN
-        cnn.compile(optimizer='adam',
-                    loss='sparse_categorical_crossentropy',
-                    metrics=['accuracy'])
+        cnn.compile(
+            optimizer="adam",
+            loss="sparse_categorical_crossentropy",
+            metrics=["accuracy"],
+        )
         cnn.summary()
 
         # Training
@@ -117,16 +147,18 @@ if __name__ == '__main__':
         #         y=y_train,
         #         validation_data=(X_test, y_test),
         #         epochs=25)
-        cnn.fit(x=X_train,
-                y=y_train,
-                validation_data=(X_test, y_test),
-                epochs=25,
-                callbacks=[early_stop])
+        cnn.fit(
+            x=X_train,
+            y=y_train,
+            validation_data=(X_test, y_test),
+            epochs=25,
+            callbacks=[early_stop],
+        )
 
         # Print accuracy and losses
         losses = pd.DataFrame(cnn.history.history)
-        losses[['accuracy', 'val_accuracy']].plot()
-        losses[['loss', 'val_loss']].plot()
+        losses[["accuracy", "val_accuracy"]].plot()
+        losses[["loss", "val_loss"]].plot()
         plt.show()
 
         predict_image(X_test[0], y_test[0], value_emotion_dic)

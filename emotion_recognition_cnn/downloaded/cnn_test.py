@@ -17,17 +17,16 @@ np.random.seed(2)
 
 
 def preprocess(X):
-    X = np.array([np.fromstring(image, np.uint8, sep=' ') for image in X])
+    X = np.array([np.fromstring(image, np.uint8, sep=" ") for image in X])
     X = X / 255.0
     X = X.reshape(-1, 48, 48, 1)
     return X
 
 
-def plot_confusion_matrix(cm, classes,
-                          normalize=False,
-                          title='Confusion matrix',
-                          cmap=plt.cm.Blues):
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+def plot_confusion_matrix(
+    cm, classes, normalize=False, title="Confusion matrix", cmap=plt.cm.Blues
+):
+    plt.imshow(cm, interpolation="nearest", cmap=cmap)
     plt.title(title)
     plt.colorbar()
     tick_marks = np.arange(len(classes))
@@ -35,17 +34,21 @@ def plot_confusion_matrix(cm, classes,
     plt.yticks(tick_marks, classes)
 
     if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        cm = cm.astype("float") / cm.sum(axis=1)[:, np.newaxis]
 
-    thresh = cm.max() / 2.
+    thresh = cm.max() / 2.0
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, cm[i, j],
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
+        plt.text(
+            j,
+            i,
+            cm[i, j],
+            horizontalalignment="center",
+            color="white" if cm[i, j] > thresh else "black",
+        )
 
     plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+    plt.ylabel("True label")
+    plt.xlabel("Predicted label")
     # Predict the values from the validation dataset
     Y_pred = model.predict(X_val)
     # Convert predictions classes to one hot vectors
@@ -61,16 +64,16 @@ def plot_confusion_matrix(cm, classes,
 # Source : https://github.com/pranjalrai-iitd/FER2013-Facial-Emotion-Recognition-/blob/master/emotion.ipynb
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data = pd.read_csv("fer2013.csv")
     print(data.head())
-    groups = [g for _, g in data.groupby('Usage')]
+    groups = [g for _, g in data.groupby("Usage")]
     train = groups[2]
     val = groups[1]
     test = groups[0]
-    train = train.drop(labels=['Usage'], axis=1)
-    val = val.drop(labels=['Usage'], axis=1)
-    test = test.drop(labels=['Usage'], axis=1)
+    train = train.drop(labels=["Usage"], axis=1)
+    val = val.drop(labels=["Usage"], axis=1)
+    test = test.drop(labels=["Usage"], axis=1)
 
     Y_train = train["emotion"]
     Y_val = val["emotion"]
@@ -112,40 +115,54 @@ if __name__ == '__main__':
     Y_test = to_categorical(Y_test, num_classes=7)
 
     model = Sequential()
-    model.add(Conv2D(32, (3, 3), padding="Same", activation='relu', input_shape=(48, 48, 1)))
+    model.add(
+        Conv2D(32, (3, 3), padding="Same", activation="relu", input_shape=(48, 48, 1))
+    )
     model.add(BatchNormalization())
-    model.add(Conv2D(32, (5, 5), padding="Same", activation='relu'))
+    model.add(Conv2D(32, (5, 5), padding="Same", activation="relu"))
     model.add(MaxPooling2D((2, 2)))
     model.add(Dropout(0.5))
-    model.add(Conv2D(64, (3, 3), padding="Same", activation='relu'))
+    model.add(Conv2D(64, (3, 3), padding="Same", activation="relu"))
     model.add(BatchNormalization())
-    model.add(Conv2D(64, (5, 5), padding="Same", activation='relu'))
+    model.add(Conv2D(64, (5, 5), padding="Same", activation="relu"))
     model.add(MaxPooling2D((2, 2)))
     model.add(Dropout(0.5))
-    model.add(Conv2D(128, (3, 3), padding="Same", activation='relu'))
+    model.add(Conv2D(128, (3, 3), padding="Same", activation="relu"))
     model.add(BatchNormalization())
-    model.add(Conv2D(128, (5, 5), padding="Same", activation='relu'))
+    model.add(Conv2D(128, (5, 5), padding="Same", activation="relu"))
     model.add(MaxPooling2D((2, 2)))
     model.add(Dropout(0.5))
     model.add(Flatten())
-    model.add(Dense(256, activation='relu'))
-    model.add(Dense(7, activation='softmax'))
+    model.add(Dense(256, activation="relu"))
+    model.add(Dense(7, activation="softmax"))
 
     optimizer = keras.optimizers.adam_v2.Adam(lr=0.001)
-    lr_anneal = ReduceLROnPlateau(monitor='val_accuracy', patience=3, factor=0.2, min_lr=1e-6)
-    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
-    history = model.fit(X_train, Y_train, validation_data=(X_val, Y_val), epochs=50, batch_size=100,
-                        callbacks=[lr_anneal])
+    lr_anneal = ReduceLROnPlateau(
+        monitor="val_accuracy", patience=3, factor=0.2, min_lr=1e-6
+    )
+    model.compile(
+        optimizer=optimizer, loss="categorical_crossentropy", metrics=["accuracy"]
+    )
+    history = model.fit(
+        X_train,
+        Y_train,
+        validation_data=(X_val, Y_val),
+        epochs=50,
+        batch_size=100,
+        callbacks=[lr_anneal],
+    )
 
     fig, ax = plt.subplots(2, 1)
-    ax[0].plot(history.history['loss'], color='b', label="Training loss")
-    ax[0].plot(history.history['val_loss'], color='r', label="validation loss", axes=ax[0])
-    legend = ax[0].legend(loc='best', shadow=True)
+    ax[0].plot(history.history["loss"], color="b", label="Training loss")
+    ax[0].plot(
+        history.history["val_loss"], color="r", label="validation loss", axes=ax[0]
+    )
+    legend = ax[0].legend(loc="best", shadow=True)
 
-    ax[1].plot(history.history['accuracy'], color='b', label="Training accuracy")
-    ax[1].plot(history.history['val_accuracy'], color='r', label="Validation accuracy")
-    legend = ax[1].legend(loc='best', shadow=True)
+    ax[1].plot(history.history["accuracy"], color="b", label="Training accuracy")
+    ax[1].plot(history.history["val_accuracy"], color="r", label="Validation accuracy")
+    legend = ax[1].legend(loc="best", shadow=True)
 
     score, acc = model.evaluate(X_test, Y_test, batch_size=100)
-    print('Test score:', score)
+    print("Test score:", score)
     print("Test accuracy:", acc)

@@ -10,7 +10,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     dataset_fashion_mnsit = tf.keras.datasets.fashion_mnist
 
     # Load train and test data
@@ -48,37 +48,64 @@ if __name__ == '__main__':
         plt.title(img_name)
         plt.gray()
         plt.show()
-        print("Image 0 prediction : {}".format(np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]))
+        print(
+            "Image 0 prediction : {}".format(
+                np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]
+            )
+        )
     except:
         # CNN
         cnn = tf.keras.Sequential()
 
         # 3 convolution layers with progressive filter 32, 64 and 128
-        cnn.add(Conv2D(filters=32, kernel_size=(3, 3), input_shape=(28, 28, 1), activation='relu'))
+        cnn.add(
+            Conv2D(
+                filters=32,
+                kernel_size=(3, 3),
+                input_shape=(28, 28, 1),
+                activation="relu",
+            )
+        )
         cnn.add(MaxPooling2D(pool_size=(2, 2)))
 
-        cnn.add(Conv2D(filters=64, kernel_size=(3, 3), input_shape=(28, 28, 1), activation='relu'))
+        cnn.add(
+            Conv2D(
+                filters=64,
+                kernel_size=(3, 3),
+                input_shape=(28, 28, 1),
+                activation="relu",
+            )
+        )
         cnn.add(MaxPooling2D(pool_size=(2, 2)))
 
-        cnn.add(Conv2D(filters=64, kernel_size=(3, 3), input_shape=(28, 28, 1), activation='relu'))
+        cnn.add(
+            Conv2D(
+                filters=64,
+                kernel_size=(3, 3),
+                input_shape=(28, 28, 1),
+                activation="relu",
+            )
+        )
         cnn.add(MaxPooling2D(pool_size=(2, 2)))
 
         # Flatten data
         cnn.add(Flatten())
 
         # ANN classic layer
-        cnn.add(Dense(512, activation='relu'))
+        cnn.add(Dense(512, activation="relu"))
 
         # Output layer (from 0 to 9)
-        cnn.add(Dense(10, activation='softmax'))
+        cnn.add(Dense(10, activation="softmax"))
 
         # earlyStopping to know the number of epoch to do.
-        early_stop = EarlyStopping(monitor='val_loss', patience=2)
+        early_stop = EarlyStopping(monitor="val_loss", patience=2)
 
         # Compilate CNN
-        cnn.compile(optimizer='adam',
-                    loss='sparse_categorical_crossentropy',
-                    metrics=['accuracy'])
+        cnn.compile(
+            optimizer="adam",
+            loss="sparse_categorical_crossentropy",
+            metrics=["accuracy"],
+        )
         cnn.summary()
 
         plt.imshow(X_train[0])
@@ -88,17 +115,19 @@ if __name__ == '__main__':
         print(type(X_train[0]))
 
         # Training
-        cnn.fit(x=X_train,
-                y=y_train,
-                validation_data=(X_test, y_test),
-                epochs=25,
-                callbacks=[early_stop])
+        cnn.fit(
+            x=X_train,
+            y=y_train,
+            validation_data=(X_test, y_test),
+            epochs=25,
+            callbacks=[early_stop],
+        )
 
         # Print accuracy and losses
         losses = pd.DataFrame(cnn.history.history)
-        losses[['accuracy', 'val_accuracy']].plot()
+        losses[["accuracy", "val_accuracy"]].plot()
 
-        losses[['loss', 'val_loss']].plot()
+        losses[["loss", "val_loss"]].plot()
         plt.show()
 
         # Predict test
@@ -108,7 +137,11 @@ if __name__ == '__main__':
         plt.title(img_name)
         plt.gray()
         plt.show()
-        print("Image 0 prediction : {}".format(np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]))
+        print(
+            "Image 0 prediction : {}".format(
+                np.argmax(cnn.predict(img.reshape(1, 28, 28, 1)), axis=-1)[0]
+            )
+        )
 
         # Save last model
         cnn.save("savedModel")
