@@ -66,7 +66,8 @@ def predict_image(img, emotion_value, dic):
 
 
 if __name__ == "__main__":
-    saved_model_name = "cnn_fern_model"
+    saved_model_name = "cnn_fer_model"
+    number_of_emotion = 7
     image_shape = (48, 48, 1)
     train_path = "../../Databases/FER-2013/train/"
     test_path = "../../Databases/FER-2013/test/"
@@ -128,8 +129,8 @@ if __name__ == "__main__":
         # ANN classic layer
         cnn.add(Dense(512, activation="relu"))
 
-        # Output layer (from 0 to 6)
-        cnn.add(Dense(7, activation="softmax"))
+        # Output layer (from 0 to 6 if 7 expressions)
+        cnn.add(Dense(number_of_emotion, activation="softmax"))
 
         # earlyStopping to know the number of epoch to do.
         early_stop = EarlyStopping(monitor="val_loss", patience=2)
@@ -152,6 +153,7 @@ if __name__ == "__main__":
             y=y_train,
             validation_data=(X_test, y_test),
             epochs=25,
+            shuffle=True,
             callbacks=[early_stop],
         )
 
