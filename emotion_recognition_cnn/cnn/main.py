@@ -2,6 +2,7 @@ from sklearn.model_selection import train_test_split
 
 from CnnModel import CnnModel
 import handle_dataset as hdtst
+from random import randrange
 
 if __name__ == "__main__":
     # Fer-13 variables
@@ -12,7 +13,7 @@ if __name__ == "__main__":
     images_shape = (48, 48, 1)
 
     # Create dictionaries
-    value_emotion_dic, emotion_value_dic = hdtst.create_dictionary(train_path)
+    value_emotion_dic = hdtst.create_dictionary(train_path)
     # Load data
     X_train, y_train = hdtst.load_dataset(train_path)
     X_test, y_test = hdtst.load_dataset(test_path)
@@ -21,10 +22,12 @@ if __name__ == "__main__":
     X_test, y_test = hdtst.preprocess_images(X_test, y_test, images_shape)
 
     # Create CNN
-    cnn = CnnModel(number_of_emotion, images_shape, "")
+    cnn = CnnModel(number_of_emotion, images_shape, saved_model_name)
     # Fit and predict
     cnn.fit(X_train, y_train, X_test, y_test)
-    cnn.predict_image(X_test[0], y_test[0], value_emotion_dic)
+    # Predict one image
+    random_image_index = randrange(len(X_test))
+    cnn.predict_image(X_test[random_image_index], y_test[random_image_index], value_emotion_dic)
     # Save model and weights
     cnn.save(saved_model_name)
 
@@ -38,7 +41,7 @@ if __name__ == "__main__":
     images_path = "../../Databases/CKPLUS/CK+48/"
 
     # Create dictionaries
-    value_emotion_dic, emotion_value_dic = hdtst.create_dictionary(images_path)
+    value_emotion_dic = hdtst.create_dictionary(images_path)
     # Load data
     X, y = hdtst.load_dataset(images_path)
     # Preprocess images and image label
@@ -47,9 +50,11 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size)
 
     # Create CNN
-    cnn = CnnModel(number_of_emotion, images_shape, "")
+    cnn = CnnModel(number_of_emotion, images_shape, saved_model_name)
     # Fit and predict
     cnn.fit(X_train, y_train, X_test, y_test)
-    cnn.predict_image(X_test[0], y_test[0], value_emotion_dic)
+    # Predict one image
+    random_image_index = randrange(len(X_test))
+    cnn.predict_image(X_test[random_image_index], y_test[random_image_index], value_emotion_dic)
     # Save model and weights
     cnn.save(saved_model_name)

@@ -10,14 +10,11 @@ def create_dictionary(path):
     for emotion in os.listdir(path):
         dic[value] = emotion
         value += 1
-
-    dic_reversed = {v: e for e, v in dic.items()}  # Create dictionary in the other sens
-
+    # dic_reversed = {v: e for e, v in dic.items()}  # Create dictionary in the other sens
     print("Keys and expression equivalents :")
     for value, emotion in dic.items():
         print("  {} <=> {}".format(value, emotion))
-
-    return dic, dic_reversed
+    return dic
 
 
 def load_dataset(path):

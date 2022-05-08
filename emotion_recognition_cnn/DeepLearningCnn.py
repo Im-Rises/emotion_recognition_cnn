@@ -8,6 +8,8 @@ from keras.models import load_model
 
 # Other libs
 import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
 
 # My libs
 import handle_dataset as hdtst
@@ -19,10 +21,23 @@ class DeepLearningCnn(ABC):
         self._number_of_emotions = number_of_emotions
         self._images_shape = images_shape
         self._model = tf.keras.Sequential()
+        self._create_compile_model()
+        self.__already_trained = False
+
+    def __init__(self, number_of_emotions, images_shape, saved_model_path):
+        self._number_of_emotions = number_of_emotions
+        self._images_shape = images_shape
+        self._model = tf.keras.Sequential()
         if saved_model_path:
-            self.__load_model_architecture(saved_model_path)
+            try:
+                self.__load_model_architecture(saved_model_path)
+                self.__already_trained = True
+            except:
+                self._create_compile_model()
+                self.__already_trained = False
         else:
             self._create_compile_model()
+            self.__already_trained = False
 
     @abstractmethod
     def _create_compile_model(self):
@@ -34,15 +49,27 @@ class DeepLearningCnn(ABC):
         self._model.summary()
 
     def fit(self, X_train, y_train, X_test, y_test):
-        early_stop = EarlyStopping(monitor="val_loss", patience=2)
-        self._model.fit(
-            x=X_train,
-            y=y_train,
-            validation_data=(X_test, y_test),
-            epochs=25,
-            shuffle=True,
-            callbacks=[early_stop],
-        )
+        if self.__already_trained:
+            print("Model loaded and already trained")
+        else:
+            print("Model not trained, training model")
+            early_stop = EarlyStopping(monitor="val_loss", patience=2)
+            self._model.fit(
+                x=X_train,
+                y=y_train,
+                validation_data=(X_test, y_test),
+                epochs=25,
+                shuffle=True,
+                callbacks=[early_stop],
+            )
+            self.plot_accuracies()
+
+    def plot_accuracies(self):
+        # Print accuracy and losses
+        losses = pd.DataFrame(self._model.history.history)
+        losses[["accuracy", "val_accuracy"]].plot()
+        losses[["loss", "val_loss"]].plot()
+        plt.show()
 
     def predict_image(self, img, emotion_value, dic):
         predicted_emotion_value = np.argmax(

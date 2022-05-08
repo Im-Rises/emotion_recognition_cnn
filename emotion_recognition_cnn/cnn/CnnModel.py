@@ -4,8 +4,8 @@ from tensorflow.keras.layers import Dense, Conv2D, Flatten, MaxPooling2D
 
 
 class CnnModel(DLCnn.DeepLearningCnn):
-    def __init__(self, number_of_emotions, images_shape, saved_model_path):
-        super().__init__(number_of_emotions, images_shape, saved_model_path)
+    # def __init__(self, number_of_emotions, images_shape, saved_model_path):
+    #     super().__init__(number_of_emotions, images_shape, saved_model_path)
 
     def _create_compile_model(self):
         # print(self._number_of_emotions)
