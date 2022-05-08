@@ -69,8 +69,8 @@ if __name__ == "__main__":
     saved_model_name = "cnn_fer_model"
     number_of_emotion = 7
     image_shape = (48, 48, 1)
-    train_path = "../../Databases/FER-2013/train/"
-    test_path = "../../Databases/FER-2013/test/"
+    train_path = "../../../Databases/FER-2013/train/"
+    test_path = "../../../Databases/FER-2013/test/"
 
     # Create dictionaries
     value_emotion_dic, emotion_value_dic = create_dictionary(train_path)
@@ -85,6 +85,7 @@ if __name__ == "__main__":
 
     try:
         cnn = load_model(saved_model_name)
+        print(type(cnn))
         cnn.summary()
         predict_image(X_test[1], y_test[1], value_emotion_dic)
 
