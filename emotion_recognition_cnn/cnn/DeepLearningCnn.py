@@ -16,7 +16,6 @@ import handle_dataset as hdtst
 
 
 class DeepLearningCnn(ABC):
-
     def __init__(self, number_of_emotions, images_shape, saved_model_path):
         self._number_of_emotions = number_of_emotions
         self._images_shape = images_shape
@@ -45,6 +44,7 @@ class DeepLearningCnn(ABC):
 
     def __load_model_architecture(self, path):
         self._model = load_model(path)
+        # self._model = self._model.load_weights(path)
         print("Model loaded")
         self._model.summary()
 
@@ -79,7 +79,8 @@ class DeepLearningCnn(ABC):
             img,
             "Real : {}, Predicted : {}".format(
                 dic[emotion_value], dic[predicted_emotion_value]
-            ))
+            ),
+        )
 
     def predict_images(self):
         print("TO implement predict_images")
@@ -87,3 +88,4 @@ class DeepLearningCnn(ABC):
 
     def save(self, name):
         self._model.save(name)
+        # self._model.save_weights(name)

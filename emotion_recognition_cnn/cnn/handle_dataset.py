@@ -50,7 +50,7 @@ def show_image(image, title):
 
 def create_csv_from_dataset(filename, header, path):
     X, y = load_dataset(path)
-    f = open(filename, 'w')
+    f = open(filename, "w")
     f.write(header)
     for emotion, image in zip(y, X):
         f.write("\n" + str(emotion) + ";")
