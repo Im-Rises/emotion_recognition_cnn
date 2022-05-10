@@ -1,6 +1,9 @@
 import csv
 import os
+
+import numpy
 import numpy as np
+import pandas as pd
 from PIL import Image
 import matplotlib.pyplot as plt
 
@@ -56,3 +59,14 @@ def create_csv_from_dataset(filename, header, path):
         f.write("\n" + str(emotion) + ";")
         for pixel in image:
             f.write(str(pixel) + " ")
+
+
+def load_csv_dataset(filename, x_header, y_header):
+    df = pd.read_csv(filename, sep=";")
+    y = df[y_header]
+    images_list = df[x_header]
+    # images_list = df[x_header].to_numpy()
+    # X = []
+    # for image in images_list:
+    #     X.append(np.fromstring(image, sep=" "))
+    # return np.asarray(X), np.asarray(y)
