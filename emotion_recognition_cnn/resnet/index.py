@@ -19,7 +19,7 @@ affecnet = DataLoader(
         "contempt",
     ],
     labels_limit=[2500 * x for x in range(1, 9)],
-    max_label=2500,
+    max_img_per_folder=2500,
 )
 
 x_train, x_test, y_train, y_test = affecnet.train_test_data()
@@ -71,7 +71,7 @@ except:
 
 pred = np.argmax(resnet18.predict(x_test[0]), axis=-1)
 plt.imshow(x_test[0].reshape(32, 32, 3))
-plt.title(affecnet.get_label(pred[0]))
+plt.title(affecnet.get_label_name_by_id(pred[0]))
 plt.show()
 
 for i in range(0, 9):
@@ -80,7 +80,7 @@ for i in range(0, 9):
     plt.gca().get_xaxis().set_ticks([])
     plt.gca().get_yaxis().set_ticks([])
     plt.ylabel(
-        "%s" % affecnet.get_label(np.argmax(resnet18.predict(x_test[i])[0])),
+        "%s" % affecnet.get_label_name_by_id(np.argmax(resnet18.predict(x_test[i])[0])),
         fontsize=14,
     )
 # show the plot

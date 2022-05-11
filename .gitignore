@@ -6,6 +6,7 @@ Databases/**
 *.csv
 **/*.csv
 /Installers
+*/PetImages/**
 
 # Visual Studio files/folders ignore
 

@@ -11,57 +11,110 @@ from sklearn.utils import shuffle
 class DataLoader:
     def __init__(
         self,
-        path: str,
+        train_path: str,
+        test_path: str,
         labels: list,
-        labels_limit: list = None,
         shape: tuple = (48, 48, 3),
-        max_label: int = 50,
+        max_img_per_folder: int = None,
     ):
-        self._labels_limit = labels_limit if labels_limit is not None else []
-        self._path = path
-        self._data_dir_list = os.listdir(path)
-        self._img_data_list = []
-        self._shape = shape
-        self._labels_name = labels
-        self._labels = []
-        self._max_label = max_label
+        self.__train_path = train_path
+        self.__test_path = test_path
+        self.__train_dir = os.listdir(train_path)
+        self.__test_dir = os.listdir(test_path)
 
-        self._load_data()
+        self.x_train, self.y_train, self.x_test, self.y_test = [], [], [], []
 
-    def _load_data(self) -> None:
-        for dataset in self._data_dir_list:
-            img_list = os.listdir(self._path + "/" + dataset)[0 : self._max_label]
-            print("Loaded the images of dataset-" + "{}\n".format(dataset))
-            nbr_img_of_this_label = 0
+        self.__labels_limit_train, self.__labels_limit_test = [], []
+        self.__shape = shape
+        self.__labels_name = labels
+        self.__labels_train, self.__labels_test = [], []
+        self.__max_img_per_folder = max_img_per_folder
+
+        self.x_train, self.y_train = self.__load_data("train")
+        self.x_test, self.y_test = self.__load_data("test")
+
+    def __load_data(self, mode: str) -> (list, list):
+        """
+        :param mode: must be equal to "train" if you want train data and "test" if you want test data
+        :return: None
+        """
+
+        # verify which  mode it is, give right parameters and raise an exception if the mode isn't good
+        directory, path, labels_limit, labels, x, y = (
+            (
+                self.__train_dir,
+                self.__train_path,
+                self.__labels_limit_train,
+                self.__labels_train,
+                [],
+                [],
+            )
+            if mode == "train"
+            else (
+                self.__test_dir,
+                self.__test_path,
+                self.__labels_limit_test,
+                self.__labels_test,
+                [],
+                [],
+            )
+            if mode == "test"
+            else (None, None, None, None, None, None)
+        )
+
+        if None in (directory, path, labels_limit, labels, x, y):
+            raise Exception("you must specify test or train to get the correct data")
+
+        # we recuperate all the filename of all images and then
+        # we crop if there is a limit of integration of data
+        for dataset in range(len(directory)):
+            img_list = os.listdir(path + "/" + directory[dataset])
+            if self.__max_img_per_folder is not None:
+                img_list = img_list[0 : self.__max_img_per_folder]
+
+            print("Loaded the images of dataset-" + "{}".format(directory[dataset]))
+            # we read all images, and we append it into x
+            nbr_img = 0
             for img in img_list:
-                input_img = cv2.imread(self._path + "/" + dataset + "/" + img)
-                # input_img=cv2.cvtColor(input_img, cv2.COLOR_BGR2GRAY)
-                # input_img = input_img.reshape(32, 32, 3)
-                input_img = np.array(cv2.resize(input_img, (32, 32)))
-                # print(input_img.shape)
-                input_img = expand_dims(input_img, axis=0)
-                self._img_data_list.append(input_img)
+                input_img = cv2.imread(path + "/" + directory[dataset] + "/" + img)
+                input_img = cv2.cvtColor(input_img, cv2.COLOR_BGR2GRAY)
+                input_img = np.array(
+                    cv2.resize(input_img, (self.__shape[0], self.__shape[1]))
+                )
+                # input_img = expand_dims(input_img, axis=0)
+                x.append(input_img)
+                nbr_img += 1
+                labels_limit.append(nbr_img)
+                y.append(directory[dataset])
 
-        self._img_data_list = np.array(self._img_data_list).astype(np.float32) / 255
+        x = np.array(x).astype(np.float32) / 255
 
-        if self._labels_limit is not None:
-            self.set_labels()
-
-    def train_test_data(self) -> tuple:
-        y = np_utils.to_categorical(self._labels, len(self._labels_name))
-
-        x, y = shuffle(self._img_data_list, y, random_state=2)
-        # return (x_train, x_test, y_train, y_test)
-        return train_test_split(x, y, test_size=0.15, random_state=8)
-
-    def set_labels(self) -> None:
-        nbr_samples = self._img_data_list.shape[0]
-        self._labels = np.ones((nbr_samples,), dtype=np.int64)
+        nbr_samples = x.shape[0]
+        labels = np.ones((nbr_samples,), dtype=np.int64)
         acc, value = 0, 0
-        for id in self._labels_limit:
-            self._labels[acc:id] = value
+        for id in labels_limit:
+            labels[acc:id] = value
             acc = id + 1
             value += 1
 
-    def get_label(self, id: int) -> str:
-        return self._labels_name[id]
+        return x, y
+
+    def get_label_name_by_id(self, id: int) -> str:
+        return self.__labels_name[id]
+
+    def get_train_data(self):
+        print(
+            "x_train:",
+            len(self.x_train),
+            "\ny_train:",
+            len(self.y_train),
+            "\nx_test:",
+            len(self.x_test),
+            "\ny_test:",
+            len(self.y_test),
+        )
+
+        return self.x_train, self.y_train
+
+    def get_test_data(self):
+        return self.x_test, self.y_test
