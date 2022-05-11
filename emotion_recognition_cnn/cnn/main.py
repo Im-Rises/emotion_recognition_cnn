@@ -27,7 +27,9 @@ if __name__ == "__main__":
     cnn.fit(X_train, y_train, X_test, y_test)
     # Predict one image
     random_image_index = randrange(len(X_test))
-    cnn.predict_image(X_test[random_image_index], y_test[random_image_index], value_emotion_dic)
+    cnn.predict_image(
+        X_test[random_image_index], y_test[random_image_index], value_emotion_dic
+    )
     # Save model and weights
     cnn.save(saved_model_name)
 
@@ -55,6 +57,8 @@ if __name__ == "__main__":
     cnn.fit(X_train, y_train, X_test, y_test)
     # Predict one image
     random_image_index = randrange(len(X_test))
-    cnn.predict_image(X_test[random_image_index], y_test[random_image_index], value_emotion_dic)
+    cnn.predict_image(
+        X_test[random_image_index], y_test[random_image_index], value_emotion_dic
+    )
     # Save model and weights
     cnn.save(saved_model_name)
