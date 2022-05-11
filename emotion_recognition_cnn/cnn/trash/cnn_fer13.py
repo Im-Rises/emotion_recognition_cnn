@@ -66,6 +66,13 @@ def predict_image(img, emotion_value, dic):
 
 
 if __name__ == "__main__":
+    # # Load data
+    # X_train, y_train = hdtst.load_dataset(train_path)
+    # X_test, y_test = hdtst.load_dataset(test_path)
+    # # Preprocess images and image label
+    # X_train, y_train = hdtst.preprocess_images(X_train, y_train, images_shape)
+    # X_test, y_test = hdtst.preprocess_images(X_test, y_test, images_shape)
+
     saved_model_name = "cnn_fer_model"
     number_of_emotion = 7
     image_shape = (48, 48, 1)
