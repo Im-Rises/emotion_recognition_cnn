@@ -186,28 +186,21 @@ if __name__ == "__main__":
     test_path = "./../../../../Databases/FER-2013/test/"
 
     fer2013 = DataLoader(
-        train_path=train_path, test_path=test_path, labels=[i for i in range(7)]
+        train_path=train_path,
+        test_path=test_path,
+        labels=os.listdir(train_path),
+        max_img_per_folder=2,
+        shape=(244, 244, 1),
     )
 
-    x_train, y_train = fer2013.get_train_data()
-    x_test, y_test = fer2013.get_test_data()
+    train = fer2013.get_train_data()
+    test = fer2013.get_test_data()
 
-    # print(x_train[0].shape)
-    # print(x_test.shape)
-
-    plt.imshow(x_train[0])
-    plt.title(y_train[0])
+    plt.imshow(test[0][10])
+    plt.title(test[1][10])
     plt.show()
 
-    plt.imshow(x_test[0])
-    plt.title(y_test[0])
-    plt.show()
-
-    # plt.imshow(x_test[0])
-    # plt.show()
-
-    """
-    base_model = ResNet50(input_shape=(224, 224, 3))
+    base_model = ResNet50(input_shape=(244, 244, 3))
 
     headModel = base_model.output
     headModel = Flatten()(headModel)
@@ -237,20 +230,21 @@ if __name__ == "__main__":
     model.compile(
         optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
     )
-
     H = model.fit_generator(
-        (x_train, y_train),
-        validation_data=(x_test, y_test),
+        train,
+        validation_data=test,
         epochs=100,
         verbose=1,
         callbacks=[mc, es],
     )
 
-    model.load_weights("best_model.h5")
-
-    print(model.evaluate_generator((x_test, y_test)))
-
-    model_json = model.to_json()
-    with open("model.json", "w") as json_file:
-        json_file.write(model_json)
-    """
+    # model = Model()
+    #
+    # model.load_weights("best_model.h5")
+    #
+    # print(model.evaluate_generator((x_test, y_test)))
+    #
+    # model_json = model.to_json()
+    # with open("model.json", "w") as json_file:
+    #     json_file.write(model_json)
+#

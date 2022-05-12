@@ -2,14 +2,46 @@ import os
 
 import cv2
 import numpy as np
-from keras.backend import expand_dims
-from keras.utils import np_utils
-from sklearn.model_selection import train_test_split
-from sklearn.utils import shuffle
+from numpy import expand_dims
 
 
 class DataLoader:
-    def __init__(
+    def __init__(self, shape=None, **kargs):
+        self.__labels_limit_test = None
+        self.__max_img_per_folder = None
+        self.x_test = None
+        self.x_train = None
+        self.y_test = None
+        self.y_train = None
+        self.__labels_test = None
+        self.__labels_train = None
+        self.__labels_name = None
+        self.__shape = shape
+        self.__test_dir = None
+        self.__train_dir = None
+        self.__test_path = None
+        self.__train_path = None
+        self.__labels_limit_train = None
+
+        if "train_path" in kargs:
+            self.init1(
+                train_path=kargs["train_path"],
+                test_path=kargs["test_path"],
+                labels=kargs["labels"],
+                shape=self.__shape,
+                max_img_per_folder=kargs["max_img_per_folder"]
+                if "max_img_per_folder" in kargs
+                else None,
+            )
+        else:
+            self.init2(
+                x_train=kargs["x_train"],
+                y_train=kargs["y_train"],
+                x_test=kargs["x_test"],
+                y_test=kargs["x_test"],
+            )
+
+    def init1(
         self,
         train_path: str,
         test_path: str,
@@ -32,6 +64,20 @@ class DataLoader:
 
         self.x_train, self.y_train = self.__load_data("train")
         self.x_test, self.y_test = self.__load_data("test")
+
+    def init2(self, x_train, y_train, x_test, y_test):
+        self.x_train = x_train
+        self.y_train = y_train
+        self.x_test = x_test
+        self.y_test = y_test
+
+    # def __add__(self, other):
+    #     return DataLoader(
+    #         x_train=(self.x_train + other.x_train),
+    #         x_test=(self.x_test + other.x_test),
+    #         y_train=(self.y_train + other.y_train),
+    #         y_test=(self.y_test + other.y_test),
+    #     )
 
     def __load_data(self, mode: str) -> (list, list):
         """
@@ -81,11 +127,13 @@ class DataLoader:
                 input_img = np.array(
                     cv2.resize(input_img, (self.__shape[0], self.__shape[1]))
                 )
-                # input_img = expand_dims(input_img, axis=0)
+                input_img = np.array(input_img)
+                # input_img = input_img.reshape(224, 224, 1)
+                input_img = np.array(expand_dims(input_img, axis=2))
                 x.append(input_img)
                 nbr_img += 1
                 labels_limit.append(nbr_img)
-                y.append(directory[dataset])
+                y.append(self.get_id_by_name(directory[dataset]))
 
         x = np.array(x).astype(np.float32) / 255
 
@@ -97,10 +145,13 @@ class DataLoader:
             acc = id + 1
             value += 1
 
-        return x, y
+        return np.array(x), np.array(y)
 
     def get_label_name_by_id(self, id: int) -> str:
         return self.__labels_name[id]
+
+    def get_id_by_name(self, name: str) -> int:
+        return self.__labels_name.index(name)
 
     def get_train_data(self):
         print(

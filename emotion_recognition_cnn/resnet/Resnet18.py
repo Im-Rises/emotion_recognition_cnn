@@ -8,6 +8,7 @@ from keras.layers import (
     BatchNormalization,
     Layer,
     Add,
+    Reshape,
 )
 from keras.models import Sequential
 from keras.models import Model
