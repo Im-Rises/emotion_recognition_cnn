@@ -4,8 +4,7 @@ from keras.callbacks import EarlyStopping
 import handle_dataset as hdtst
 from keras.applications.vgg16 import VGG16
 
-images_shape = (224, 224, 1)
-images_shape = (100, 100, 3)
+images_shape = (224, 224, 3)
 
 model = VGG16(
     weights=None, input_shape=images_shape
@@ -21,13 +20,6 @@ train_path = "../../Databases/FER-2013/train/"
 # train_path = "../../Databases/My_Test/"
 test_path = "../../Databases/FER-2013/test/"
 # test_path = "../../Databases/My_Test/"
-
-# # Load dataset
-# train_path = "../../Databases/My_Test/"
-# X_train, y_train = hdtst.load_dataset_v2(train_path, (224, 224, 1))
-# X_train = hdtst.preprocess_images(X_train, (224, 224, 1))
-# plt.imshow(X_train[0])
-# plt.show()
 
 X_train, y_train = hdtst.load_dataset_v2(train_path, images_shape)
 X_train = hdtst.preprocess_images(X_train, images_shape)

@@ -1,10 +1,5 @@
-import csv
 import os
-
-import numpy
 import numpy as np
-import pandas as pd
-from PIL import Image
 import matplotlib.pyplot as plt
 from keras.preprocessing.image import load_img
 
@@ -33,7 +28,6 @@ def load_dataset_v2(path, target_shape):
                 np.array(
                     load_img(
                         path_folder + image,
-                        grayscale=True,
                         target_size=target_shape,
                     ).getdata()
                 )
