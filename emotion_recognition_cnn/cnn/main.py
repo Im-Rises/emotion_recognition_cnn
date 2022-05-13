@@ -1,7 +1,7 @@
 from sklearn.model_selection import train_test_split
 
 from CnnModel import CnnModel
-import handle_dataset as hdtst
+from emotion_recognition_cnn import handle_dataset as hdtst
 from random import randrange
 
 if __name__ == "__main__":

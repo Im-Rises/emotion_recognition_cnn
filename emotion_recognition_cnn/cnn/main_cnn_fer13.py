@@ -1,11 +1,6 @@
-from sklearn.model_selection import train_test_split
-
 from CnnModel import CnnModel
-import handle_dataset as hdtst
+from emotion_recognition_cnn import handle_dataset as hdtst
 from random import randrange
-from os.path import exists
-
-import time
 
 if __name__ == "__main__":
     # Fer-13 variables
@@ -14,6 +9,7 @@ if __name__ == "__main__":
     train_csv_file = "train_fer.csv"
     test_csv_file = "test_fer.csv"
     saved_model_name = "cnn_fer_model"
+    number_of_emotions = 7
     images_shape = (48, 48, 1)
 
     # Create dictionaries
@@ -33,15 +29,15 @@ if __name__ == "__main__":
     # ---------------------------------------------------------------------------------------------------
 
     # Load dataset
-    X_train, y_train = hdtst.load_dataset(train_path)
-    X_test, y_test = hdtst.load_dataset(test_path)
+    X_train, y_train = hdtst.load_dataset(train_path, images_shape)
+    X_test, y_test = hdtst.load_dataset(test_path, images_shape)
 
     # Preprocess images and image label
-    X_train, y_train = hdtst.preprocess_images(X_train, y_train, images_shape)
-    X_test, y_test = hdtst.preprocess_images(X_test, y_test, images_shape)
+    X_train = hdtst.preprocess_images(X_train, images_shape)
+    X_test = hdtst.preprocess_images(X_test, images_shape)
 
     # Create CNN
-    cnn = CnnModel(images_shape, saved_model_name)
+    cnn = CnnModel(number_of_emotions, images_shape, saved_model_name)
     # Fit and predict
     cnn.fit(X_train, y_train, X_test, y_test)
     # Predict one image
@@ -52,9 +48,11 @@ if __name__ == "__main__":
     # Save model and weights
     cnn.save(saved_model_name)
 
-    my_X_test, my_y_test = hdtst.load_dataset_v2("../../Databases/My_test/")
-    random_image_index = randrange(len(my_X_test))
-    my_X_test, my_y_test = hdtst.preprocess_images(my_X_test, my_y_test, images_shape)
-    cnn.predict_image(
-        my_X_test[random_image_index], my_y_test[random_image_index], value_emotion_dic
-    )
+    my_X_test, my_y_test = hdtst.load_dataset("../../Databases/My_test/", images_shape)
+    my_X_test = hdtst.preprocess_images(my_X_test, images_shape)
+    for image, emotion in zip(my_X_test, my_y_test):
+        cnn.predict_image(
+            image,
+            emotion,
+            value_emotion_dic,
+        )
