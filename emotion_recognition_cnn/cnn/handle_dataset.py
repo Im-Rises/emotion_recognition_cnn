@@ -1,4 +1,3 @@
-import csv
 import os
 
 import numpy
@@ -32,8 +31,6 @@ def load_dataset(path):
             X.append(np.array(Image.open(path_folder + image).getdata()))  # read image
             y.append(dummy_value)  # get dummy value
         dummy_value += 1
-    X = np.array(X)
-    y = np.asarray(y)
     return X, y
 
 
@@ -63,8 +60,10 @@ def load_dataset_v2(path):
 # Only implemented for 1 layer image (Grayscale images)
 def preprocess_images(X, y, images_shape):
     # dimensions parameter needs to be a tuple with (width, height, number of layer)
+    X = np.array(X)
     X = X / 255.0
     X = X.reshape(-1, images_shape[0], images_shape[1], 1)
+    y = np.asarray(y)
     return X, y
 
 
