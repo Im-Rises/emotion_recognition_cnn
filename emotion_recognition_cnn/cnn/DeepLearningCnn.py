@@ -16,15 +16,13 @@ import handle_dataset as hdtst
 
 
 class DeepLearningCnn(ABC):
-    def __init__(self, number_of_emotions, images_shape, saved_model_path):
-        self._number_of_emotions = number_of_emotions
+    def __init__(self, images_shape, saved_model_path):
         self._images_shape = images_shape
         self._model = tf.keras.Sequential()
         self._create_compile_model()
         self.__already_trained = False
 
-    def __init__(self, number_of_emotions, images_shape, saved_model_path):
-        self._number_of_emotions = number_of_emotions
+    def __init__(self, images_shape, saved_model_path):
         self._images_shape = images_shape
         self._model = tf.keras.Sequential()
         if saved_model_path:
@@ -62,6 +60,7 @@ class DeepLearningCnn(ABC):
                 shuffle=True,
                 callbacks=[early_stop],
             )
+
             self.plot_accuracies()
 
     def plot_accuracies(self):
@@ -83,7 +82,7 @@ class DeepLearningCnn(ABC):
         )
 
     def predict_images(self):
-        print("TO implement predict_images")
+        print("To implement predict_images")
         pass
 
     def save(self, name):

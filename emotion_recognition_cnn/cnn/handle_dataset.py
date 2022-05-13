@@ -1,4 +1,3 @@
-import csv
 import os
 
 import numpy
@@ -6,6 +5,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 import matplotlib.pyplot as plt
+from keras.preprocessing.image import load_img
 
 
 def create_dictionary(path):
@@ -31,16 +31,39 @@ def load_dataset(path):
             X.append(np.array(Image.open(path_folder + image).getdata()))  # read image
             y.append(dummy_value)  # get dummy value
         dummy_value += 1
+    return X, y
+
+
+def load_dataset_v2(path):
+    X = []
+    y = []
+    dummy_value = 0
+    for folder in os.listdir(path):
+        path_folder = path + folder + "/"
+        for image in os.listdir(path_folder):
+            X.append(
+                np.array(
+                    load_img(
+                        path_folder + image,
+                        grayscale=True,
+                        target_size=(48, 48, 1),
+                    ).getdata()
+                )
+            )
+            y.append(dummy_value)  # get dummy value
+            dummy_value += 1
     X = np.array(X)
-    y = np.asarray(y)
+    y = np.array(y)
     return X, y
 
 
 # Only implemented for 1 layer image (Grayscale images)
 def preprocess_images(X, y, images_shape):
     # dimensions parameter needs to be a tuple with (width, height, number of layer)
+    X = np.array(X)
     X = X / 255.0
     X = X.reshape(-1, images_shape[0], images_shape[1], 1)
+    y = np.asarray(y)
     return X, y
 
 
@@ -64,9 +87,8 @@ def create_csv_from_dataset(filename, header, path):
 def load_csv_dataset(filename, x_header, y_header):
     df = pd.read_csv(filename, sep=";")
     y = df[y_header]
-    images_list = df[x_header]
-    # images_list = df[x_header].to_numpy()
-    # X = []
-    # for image in images_list:
-    #     X.append(np.fromstring(image, sep=" "))
-    # return np.asarray(X), np.asarray(y)
+    images_list = df[x_header].to_numpy()
+    X = []
+    for image in images_list:
+        X.append(np.fromstring(image, sep=" "))
+    return np.asarray(X), np.asarray(y)
