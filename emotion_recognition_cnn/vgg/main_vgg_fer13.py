@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from keras.callbacks import EarlyStopping
 
-import handle_dataset as hdtst
+from emotion_recognition_cnn import handle_dataset as hdtst
 from keras.applications.vgg16 import VGG16
 
 images_shape = (224, 224, 3)
@@ -21,10 +21,10 @@ train_path = "../../Databases/FER-2013/train/"
 test_path = "../../Databases/FER-2013/test/"
 # test_path = "../../Databases/My_Test/"
 
-X_train, y_train = hdtst.load_dataset_v2(train_path, images_shape)
+X_train, y_train = hdtst.load_dataset(train_path, images_shape)
 X_train = hdtst.preprocess_images(X_train, images_shape)
 print("Train data loaded")
-X_test, y_test = hdtst.load_dataset_v2(test_path, images_shape)
+X_test, y_test = hdtst.load_dataset(test_path, images_shape)
 X_test = hdtst.preprocess_images(X_test, images_shape)
 print("Tests data loaded")
 

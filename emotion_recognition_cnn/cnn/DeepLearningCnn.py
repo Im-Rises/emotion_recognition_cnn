@@ -12,17 +12,19 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # My libs
-import handle_dataset as hdtst
+from emotion_recognition_cnn import handle_dataset as hdtst
 
 
 class DeepLearningCnn(ABC):
-    def __init__(self, images_shape, saved_model_path):
+    def __init__(self, number_of_emotions, images_shape, saved_model_path):
+        self._number_of_emotions = number_of_emotions
         self._images_shape = images_shape
         self._model = tf.keras.Sequential()
         self._create_compile_model()
         self.__already_trained = False
 
-    def __init__(self, images_shape, saved_model_path):
+    def __init__(self, number_of_emotions, images_shape, saved_model_path):
+        self._number_of_emotions = number_of_emotions
         self._images_shape = images_shape
         self._model = tf.keras.Sequential()
         if saved_model_path:

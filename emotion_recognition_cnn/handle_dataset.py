@@ -17,7 +17,7 @@ def create_dictionary(path):
     return dic
 
 
-def load_dataset_v2(path, target_shape):
+def load_dataset(path, target_shape):
     X = []
     y = []
     dummy_value = 0
@@ -28,12 +28,13 @@ def load_dataset_v2(path, target_shape):
                 np.array(
                     load_img(
                         path_folder + image,
+                        color_mode="grayscale",
                         target_size=target_shape,
                     ).getdata()
                 )
             )
             y.append(dummy_value)  # get dummy value
-            dummy_value += 1
+        dummy_value += 1
     X = np.array(X)
     y = np.array(y)
     return X, y
