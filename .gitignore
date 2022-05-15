@@ -7,6 +7,7 @@ Databases/**
 **/*.csv
 /Installers
 */resnet50_weights*.h5
+[dD]ownloaded
 
 # Visual Studio files/folders ignore
 
