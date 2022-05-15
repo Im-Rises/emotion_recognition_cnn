@@ -14,13 +14,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from skimage.io import imread, imshow
 
+
 def create_model():
     model = tf.keras.Sequential()
     model.add(
         Conv2D(
             filters=32,
             kernel_size=(3, 3),
-            input_shape=IMSIZE+[1],
+            input_shape=IMSIZE + [1],
             activation="relu",
         )
     )
@@ -30,7 +31,7 @@ def create_model():
         Conv2D(
             filters=64,
             kernel_size=(3, 3),
-            input_shape=IMSIZE+[1],
+            input_shape=IMSIZE + [1],
             activation="relu",
         )
     )
@@ -40,7 +41,7 @@ def create_model():
         Conv2D(
             filters=64,
             kernel_size=(3, 3),
-            input_shape=IMSIZE+[1],
+            input_shape=IMSIZE + [1],
             activation="relu",
         )
     )
@@ -142,4 +143,3 @@ r = mymodel.fit(
 score = mymodel.evaluate(test_generator)
 print("Test loss:", score[0])
 print("Test accuracy:", score[1])
-

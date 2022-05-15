@@ -50,7 +50,7 @@ if __name__ == "__main__":
         target_size=images_shape,
         shuffle=True,
         batch_size=batch_size,
-        color_mode="grayscale"
+        color_mode="grayscale",
     )
 
     # Create CNN
@@ -127,7 +127,6 @@ if __name__ == "__main__":
         validation_steps=len(test_image_files) // batch_size,
         callbacks=[early_stop],
     )
-
 
     # cnn.save(saved_model_name)
 

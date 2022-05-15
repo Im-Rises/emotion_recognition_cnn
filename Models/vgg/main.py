@@ -24,7 +24,7 @@ from skimage.io import imread, imshow
 def create_model():
     vgg = VGG19(
         input_shape=IMSIZE + [3],
-        weights="imagenet",
+        # weights="imagenet",
         include_top=False,
     )
 
@@ -41,7 +41,9 @@ def create_model():
 
     model = Model(inputs=vgg.input, outputs=x)
 
-    model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+    model.compile(
+        loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"]
+    )
 
     model.summary()
 
@@ -81,6 +83,7 @@ train_generator = image_gen.flow_from_directory(
     target_size=IMSIZE,
     shuffle=True,
     batch_size=batch_size,
+    color_mode="rgb",
 )
 
 test_generator = image_gen.flow_from_directory(
@@ -90,20 +93,21 @@ test_generator = image_gen.flow_from_directory(
     batch_size=batch_size,
 )
 
+
 train_image_files = glob(src_path_train + "/*/*.jp*g")
 test_image_files = glob(src_path_test + "/*/*.jp*g")
 # len(image_files), len(valid_image_files)
 
 mymodel = create_model()
 
-early_stop = EarlyStopping(monitor="val_loss", patience=2, restore_best_weights=True)
+# early_stop = EarlyStopping(monitor="val_loss", patience=2, restore_best_weights=True)
 r = mymodel.fit_generator(
     train_generator,
     validation_data=test_generator,
     epochs=epochs,
     steps_per_epoch=len(train_image_files) // batch_size,
     validation_steps=len(test_image_files) // batch_size,
-    callbacks=[early_stop],
+    # callbacks=[early_stop],
 )
 
 score = mymodel.evaluate(test_generator)
