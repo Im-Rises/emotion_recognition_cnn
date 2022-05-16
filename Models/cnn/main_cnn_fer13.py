@@ -1,5 +1,5 @@
-from CnnModel import CnnModel
-from emotion_recognition_cnn import handle_dataset as hdtst
+from Models.cnn.cnn_model import CnnModel
+from Models import handle_dataset as hdtst
 from random import randrange
 
 if __name__ == "__main__":
