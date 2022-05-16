@@ -1,0 +1,4 @@
+# Ignore CNN saved model language in GitHub language summary :
+
+*.pb linguist-vendored
+# emotion_recognition_cnn/emotion_recognition_cnn/savedModel/** linguist-vendored
