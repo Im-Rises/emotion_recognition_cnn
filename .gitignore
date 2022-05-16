@@ -9,6 +9,8 @@ Databases/**
 */resnet50_weights*.h5
 [dD]ownloaded
 
+*.pb
+
 # Visual Studio files/folders ignore
 
 ## Ignore Visual Studio temporary files, build results, and
