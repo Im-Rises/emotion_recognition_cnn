@@ -1,0 +1,9 @@
+matplotlib
+numpy
+sklearn
+pandas
+tensorflow==2.6.0
+tensorflow-gpu==2.6.0
+keras==2.6
+opencv-python
+cv2
