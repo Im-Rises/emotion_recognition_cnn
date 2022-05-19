@@ -8,7 +8,7 @@ from keras.layers import Flatten, Dense
 from keras_preprocessing.image import ImageDataGenerator
 
 
-def get_data(train_path: str, test_path: str, shape: list, batch_size: int):
+def get_data(train_path: str, test_path: str, shape: list, batch_size: int) -> tuple:
     image_gen = ImageDataGenerator(
         # rescale=1 / 127.5,
         rotation_range=20,
@@ -38,24 +38,22 @@ def get_data(train_path: str, test_path: str, shape: list, batch_size: int):
 
 
 def create_model(shape: list, nbr_classes: int):
-    vgg = Xception(
-        input_shape=shape + [3],
-        weights="imagenet",
-        include_top=False,
+    xception = Xception(
+        input_shape=shape + [3], weights="imagenet", include_top=False, classes=7
     )
 
     # Freeze existing VGG already trained weights
-    for layer in vgg.layers:
+    for layer in xception.layers[:5]:
         layer.trainable = False
 
     # get the VGG output
-    out = vgg.output
+    out = xception.output
 
     # Add new dense layer at the end
     x = Flatten()(out)
     x = Dense(nbr_classes, activation="softmax")(x)
 
-    model = Model(inputs=vgg.input, outputs=x)
+    model = Model(inputs=xception.input, outputs=x)
 
     model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
 
