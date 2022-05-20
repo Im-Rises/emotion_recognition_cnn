@@ -152,6 +152,8 @@ if __name__ == "__main__":
     losses[["accuracy", "val_accuracy"]].plot()
     plt.show()
 
+    model.save("modelSimpleCnn")
+
     ## display some predictions
     # num_rows = 5
     # num_cols = 3
