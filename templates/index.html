@@ -1,10 +1,20 @@
-<body>
-<div class="container">
-    <div class="row">
-        <p id="clock">Here will be date|time</p>
+<!doctype html>
+<html lang="fr">
+<head>
+    <title>Emotion Recognition</title>
+    <link rel="stylesheet" href="../staticFiles/index.css" type="text/css">
+</head>
 
+<body>
+<h1>Emotion Recognition</h1>
+
+<div class="container">
+
+
+    <div class="left">
+        <p id="clock">no faces found</p>
         <script>
-            var clock = document.getElementById("clock");
+            const clock = document.getElementById("clock");
 
             setInterval(() => {
                 fetch("{{ url_for('time_feed') }}")
@@ -13,12 +23,17 @@
                             clock.innerHTML = t
                         })
                     });
-            }, 1000);
+            }, 10);
         </script>
+    </div>
+    <div class="right">
         <div class="col-lg-8  offset-lg-2">
-            <h2 class="mt-5">Emotion Recognition</h2>
-            <img src="{{ url_for('video_feed') }}" height="80%">
+            <img src="{{ url_for('video_feed') }}" height="80%" alt="please wait...">
         </div>
     </div>
 </div>
 </body>
+
+
+</html>
+

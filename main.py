@@ -20,7 +20,7 @@ face = None
 emotions = None
 
 # instatiate flask app
-app = Flask(__name__, template_folder="./templates")
+app = Flask(__name__, template_folder="./templates", static_folder="./staticFiles")
 
 camera = cv2.VideoCapture(0)
 
