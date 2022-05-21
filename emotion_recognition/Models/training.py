@@ -1,9 +1,11 @@
 import os
 
+from keras.applications.inception_resnet_v2 import InceptionResNetV2
+from keras.applications.inception_v3 import InceptionV3
 from keras.applications.resnet import ResNet50
+from keras.applications.resnet_v2 import ResNet50V2
 from keras.applications.vgg16 import VGG16
 from keras.applications.xception import Xception
-from keras.applications.inception_resnet_v2 import InceptionResNetV2
 from matplotlib import pyplot as plt
 from tensorflow import keras
 
@@ -22,10 +24,10 @@ if __name__ == "__main__":
         "train_path": "../../Databases/FER-2013/train/",
         "test_path": "../../Databases/FER-2013/test/",
         "batch_size": 8,
-        "epochs": 30,
+        "epochs": 50,
         "number_of_last_layers_trainable": 5,
     }
-    model, filename = None, None
+    model, filename, preprocess_input = None, None, None
 
     choice = input(
         "which models do you want to train?"
@@ -33,6 +35,8 @@ if __name__ == "__main__":
         "\n\t-2- vgg16"
         "\n\t-3- xception"
         "\n\t-4- inception_resnet_v2"
+        "\n\t-5- inception_v3"
+        "\n\t-6- resnet50v2"
         "\n>>>"
     )
     if choice == "1":
@@ -51,8 +55,16 @@ if __name__ == "__main__":
         model = InceptionResNetV2
         filename = "inception_resnet_v2"
         preprocess_input = keras.applications.inception_resnet_v2.preprocess_input
+    elif choice == "5":
+        model = InceptionV3
+        filename = "inception_v3"
+        preprocess_input = keras.applications.inception_v3.preprocess_input
+    elif choice == "6":
+        model = ResNet50V2
+        filename = "resnet50v2"
+        preprocess_input = keras.applications.resnet_v2.preprocess_input
     else:
-        print("you have to choose a number between 1 and 4")
+        print("you have to choose a number between 1 and 6")
         exit(1)
 
     if model is not None and filename is not None:
