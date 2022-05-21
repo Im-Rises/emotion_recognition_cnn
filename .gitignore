@@ -5,6 +5,7 @@ trash/
 .idea/
 *.pb
 **/trained_models/*/**
+*.zip
 
 # Visual Studio files/folders ignore
 
