@@ -1,9 +1,11 @@
 import os
 
 from keras.applications.resnet import ResNet50
-from keras.applications.vgg19 import VGG19, preprocess_input
+from keras.applications.vgg16 import VGG16
 from keras.applications.xception import Xception
+from keras.applications.inception_resnet_v2 import InceptionResNetV2
 from matplotlib import pyplot as plt
+from tensorflow import keras
 
 from common_functions import (
     create_model,
@@ -28,21 +30,29 @@ if __name__ == "__main__":
     choice = input(
         "which models do you want to train?"
         "\n\t-1- resnet50"
-        "\n\t-2- vgg19"
+        "\n\t-2- vgg16"
         "\n\t-3- xception"
+        "\n\t-4- inception_resnet_v2"
         "\n>>>"
     )
     if choice == "1":
         model = ResNet50
+        preprocess_input = keras.applications.resnet.preprocess_input
         filename = "resnet50"
     elif choice == "2":
-        model = VGG19
-        filename = "vgg19"
+        model = VGG16
+        filename = "vgg16"
+        preprocess_input = keras.applications.vgg16.preprocess_input
     elif choice == "3":
         model = Xception
         filename = "xception"
+        preprocess_input = keras.applications.xception.preprocess_input
+    elif choice == "4":
+        model = InceptionResNetV2
+        filename = "inception_resnet_v2"
+        preprocess_input = keras.applications.inception_resnet_v2.preprocess_input
     else:
-        print("you have to choose a number between 1 and 3")
+        print("you have to choose a number between 1 and 4")
         exit(1)
 
     if model is not None and filename is not None:

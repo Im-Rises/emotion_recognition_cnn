@@ -4,6 +4,7 @@ Databases/*/**
 trash/
 .idea/
 *.pb
+**/trained_models/*/**
 
 # Visual Studio files/folders ignore
 
