@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat May  7 21:44:26 2022
 
-@author: Yohan
-"""
 from tkinter import *
 from PIL import Image, ImageTk
 import cv2

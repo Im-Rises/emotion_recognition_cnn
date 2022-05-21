@@ -7,7 +7,7 @@ from keras.backend import expand_dims
 from keras.models import load_model
 from numpy import ndarray
 
-emotions: dict[int, str] = {
+emotions = {
     0: "angry",
     1: "disgust",
     2: "fear",
