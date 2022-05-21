@@ -6,7 +6,6 @@ Databases/**
 *.csv
 **/*.csv
 /Installers
-*/resnet50_weights*.h5
 [dD]ownloaded
 
 *.pb
