@@ -1,9 +1,7 @@
-from datetime import datetime
-
 import cv2
 from flask import Flask, render_template, Response, request
 from keras.models import load_model
-
+from emoji import emojize
 from emotion_recognition.prediction import get_face_from_frame, get_emotions_from_face
 
 switch, out, capture, rec_frame = (
@@ -26,6 +24,16 @@ app = Flask(__name__, template_folder="./templates")
 
 camera = cv2.VideoCapture(0)
 
+emotions_with_smiley = {
+    "happy": f"{emojize(':face_with_tears_of_joy:')} HAPPY",
+    "angry": f"{emojize(':pouting_face:')} ANGRY",
+    "fear": f"{emojize(':fearful_face:')} FEAR",
+    "neutral": f"{emojize(':neutral_face:')} NEUTRAL",
+    "sad": f"{emojize(':loudly_crying_face:')} SAD",
+    "surprise": f"{emojize(':face_screaming_in_fear:')} SURPRISE",
+    "disgust": f"{emojize(':nauseated_face:')} DISGUST",
+}
+
 
 def gen_frames():  # generate frame by frame from camera
     global face
@@ -45,6 +53,14 @@ def gen_frames():  # generate frame by frame from camera
                 pass
 
 
+def magnify_emotion(emotion):
+    return f"<p>{emotions_with_smiley[emotion[0]]} :{int(emotion[1]*100)} %</p>"
+
+
+def magnify_results(emotions):
+    return "".join(list(map(magnify_emotion, emotions)))
+
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -59,7 +75,9 @@ def time_feed():
                 cv2.flip(frame, 1), face_shape, class_cascade=class_cascade
             )
             emotions = get_emotions_from_face(face, model)
-            yield str(emotions) if emotions is not None else "no faces found"
+            yield magnify_results(
+                emotions
+            ) if emotions is not None else "no faces found"
 
     return Response(generate(), mimetype="text")
 
