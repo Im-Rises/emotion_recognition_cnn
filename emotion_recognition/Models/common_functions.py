@@ -8,11 +8,11 @@ from keras_preprocessing.image import ImageDataGenerator
 
 
 def get_data(
-    train_path: str,
-    test_path: str,
-    shape: list,
-    batch_size: int,
-    preprocess_input: object,
+        train_path: str,
+        test_path: str,
+        shape: list,
+        batch_size: int,
+        preprocess_input: object,
 ) -> tuple:
     image_gen = ImageDataGenerator(
         # rescale=1 / 127.5,
@@ -42,13 +42,13 @@ def get_data(
     )
 
 
-def create_model(architecture, shape: list, nbr_classes: int):
+def create_model(architecture, shape: list, nbr_classes: int, number_of_last_layers_trainable: int):
     model = architecture(
         input_shape=shape + [3], weights="imagenet", include_top=False, classes=7
     )
 
     # Freeze existing VGG already trained weights
-    for layer in model.layers[:5]:
+    for layer in model.layers[:number_of_last_layers_trainable]:
         layer.trainable = False
 
     # get the VGG output
@@ -68,13 +68,13 @@ def create_model(architecture, shape: list, nbr_classes: int):
 
 
 def fit(
-    model,
-    train_generator,
-    test_generator,
-    epochs,
-    train_files,
-    test_files,
-    batch_size,
+        model,
+        train_generator,
+        test_generator,
+        epochs,
+        train_files,
+        test_files,
+        batch_size,
 ):
     early_stop = EarlyStopping(monitor="val_accuracy", patience=2)
     return model.fit(
@@ -94,5 +94,5 @@ def evaluation_model(model, test_generator):
     return score
 
 
-def saveModel(filename):
-    save_model(f"./trained_models/{filename}")
+def saveModel(filename, model):
+    save_model(model=model, filepath=f"./trained_models/{filename}")
