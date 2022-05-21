@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 matplotlib~=3.5.1
 numpy~=1.19.5
 sklearn~=0.0
@@ -12,14 +11,3 @@ Pillow~=9.1.0
 future~=0.18.2
 scikit-learn~=1.0.2
 scikit-image~=0.19.2
-=======
-matplotlib
-numpy
-sklearn
-pandas
-tensorflow==2.6.0
-tensorflow-gpu==2.6.0
-keras==2.6
-opencv-python
-cv2
->>>>>>> a7c33b0539e6bb422c0e1ac9719b60ae6e5cbe2c

@@ -38,6 +38,7 @@ if __name__ == "__main__":
     else:
         print("you have to choose a number between 1 and 3")
         exit(1)
+
     if model is not None and filename is not None:
         print(
             f"batch_size = {batch_size} "
@@ -73,6 +74,6 @@ if __name__ == "__main__":
             batch_size=batch_size,
         )
 
-        evaluation_model(model, test_generator)
+        score = evaluation_model(model, test_generator)
 
         saveModel(filename)

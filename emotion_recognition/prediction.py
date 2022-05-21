@@ -35,7 +35,7 @@ def get_emotion_probability_from_id(pred: np.ndarray, id) -> float:
 
 
 def sort_dict_and_return_tuple_of_scores_sorted(
-    dict_pred: dict[str, float]
+        dict_pred: dict[str, float]
 ) -> list[str]:
     return sorted(dict_pred.items(), key=lambda x: x[1])[::-1]
 
@@ -50,7 +50,7 @@ def get_sorted_results(pred: np.ndarray) -> list:
 
 
 def get_face_from_frame_with_classcascade(
-    frame: np.ndarray, class_cascade, shape: tuple
+        frame: np.ndarray, class_cascade, shape: tuple
 ) -> Union[tuple[np.ndarray, np.ndarray], tuple[np.ndarray, None]]:
     frame = cv2.flip(frame, 1)
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -63,7 +63,7 @@ def get_face_from_frame_with_classcascade(
     )
     for (x, y, w, h) in faces:
         if x is not None and y is not None:
-            face = Image.fromarray(frame[y : y + h, x : x + w]).resize(shape)
+            face = Image.fromarray(frame[y: y + h, x: x + w]).resize(shape)
             face = expand_dims(np.asarray(face), 0)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             return frame, face
@@ -71,7 +71,7 @@ def get_face_from_frame_with_classcascade(
 
 
 def get_face_from_frame(
-    frame: np.ndarray, shape: tuple
+        frame: np.ndarray, shape: tuple
 ) -> Union[tuple[ndarray, ndarray], tuple[ndarray, None]]:
     return get_face_from_frame_with_classcascade(frame, classCascade, shape)
 
