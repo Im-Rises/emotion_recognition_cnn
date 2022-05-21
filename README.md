@@ -2,8 +2,8 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="pythonLogo" style="height:50px">
-    <img src="Readme_files/tensorflow_logo.svg" alt="tensorflowLogo" style="height:50px;">
-    <img src="Readme_files/keras_logo.png" alt="kerasLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/169644815-7c59a948-09a4-4cd5-9a7d-d06d5dcd3ce1.svg" alt="tensorflowLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/169644811-109bf300-c795-44c4-8bab-f6900f97c422.png" alt="kerasLogo" style="height:50px;">
 </p>
 
 ## Description
@@ -137,3 +137,7 @@ OpenCV :
 
 <https://www.datacorner.fr/reco-faciale-opencv/>
 <https://www.datacorner.fr/reco-faciale-opencv-2/>
+
+## Contributors
+
+[![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/emotion_recognition_cnn)](https://github.com/Im-Rises/emotion_recognition_cnn/graphs/contributors)
