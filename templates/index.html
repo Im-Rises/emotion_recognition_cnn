@@ -1,6 +1,20 @@
 <body>
 <div class="container">
     <div class="row">
+        <p id="clock">Here will be date|time</p>
+
+        <script>
+            var clock = document.getElementById("clock");
+
+            setInterval(() => {
+                fetch("{{ url_for('time_feed') }}")
+                    .then(response => {
+                        response.text().then(t => {
+                            clock.innerHTML = t
+                        })
+                    });
+            }, 1000);
+        </script>
         <div class="col-lg-8  offset-lg-2">
             <h2 class="mt-5">Emotion Recognition</h2>
             <img src="{{ url_for('video_feed') }}" height="80%">

@@ -1,8 +1,10 @@
+from datetime import datetime
+
 import cv2
 from flask import Flask, render_template, Response, request
 from keras.models import load_model
 
-from emotion_recognition.prediction import get_face_from_frame
+from emotion_recognition.prediction import get_face_from_frame, get_emotions_from_face
 
 switch, out, capture, rec_frame = (
     1,
@@ -16,6 +18,8 @@ model = load_model("./emotion_recognition/Models/trained_models/resnet50")
 class_cascade = cv2.CascadeClassifier(
     "./emotion_recognition/ClassifierForOpenCV/frontalface_default.xml"
 )
+face = None
+emotions = None
 
 # instatiate flask app
 app = Flask(__name__, template_folder="./templates")
@@ -24,7 +28,8 @@ camera = cv2.VideoCapture(0)
 
 
 def gen_frames():  # generate frame by frame from camera
-    while True:
+    global face
+    while camera.isOpened():
         success, frame = camera.read()
         if success:
             frame, face = get_face_from_frame(
@@ -43,6 +48,20 @@ def gen_frames():  # generate frame by frame from camera
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
+@app.route("/time_feed")
+def time_feed():
+    def generate():
+        success, frame = camera.read()
+        if success:
+            frame, face = get_face_from_frame(
+                cv2.flip(frame, 1), face_shape, class_cascade=class_cascade
+            )
+            emotions = get_emotions_from_face(face, model)
+            yield str(emotions) if emotions is not None else "no faces found"
+
+    return Response(generate(), mimetype="text")
 
 
 @app.route("/video_feed")

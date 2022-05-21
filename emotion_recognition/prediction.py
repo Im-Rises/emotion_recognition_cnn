@@ -73,10 +73,7 @@ def get_face_from_frame(
 
 
 def get_emotions_from_face(face, model) -> Union[list, None]:
-    if face is not None:
-        pred = model.predict(x=face)
-        return get_sorted_results(pred)
-    return None
+    return get_sorted_results(model.predict(x=face)) if face is not None else None
 
 
 def camera_modified(face_shape: tuple, model: Model, class_cascade):
