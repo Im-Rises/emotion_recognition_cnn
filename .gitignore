@@ -1,13 +1,8 @@
 # My selected files/folders ignore
 
-MyDocs/**
-Databases/**
-**/.idea
-*.csv
-**/*.csv
-/Installers
-[dD]ownloaded
-
+Databases/*/**
+trash/
+.idea/
 *.pb
 
 # Visual Studio files/folders ignore
