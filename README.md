@@ -28,7 +28,7 @@ The app is using the CNN (Convolutional neural network) to analyse the emotion o
 It will learn from different databases that contains several images of persons showing one of the six main emotion.
 The AI learn from this database by analysing each image, once done our model is able to analyse faces images out of the database.
 
-## Features
+### Features
 
 The app features :
 
@@ -58,6 +58,14 @@ Placeholder
 If you just want to start the UI app, then just follow the `1. Python, Tensorflow, Keras` instructions just below.
 
 In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if ypu don't want the training to take more than 2 hours.  
+
+main.py : start the web IHM (you need a camera).
+
+prediction.py : set of functions used to handle opencv, models, etc... (mostly used by main.py)
+
+emotion_recognition/Models/training.py : train the model/architecture selected when starting the script.
+
+emotion_recognition/Models/common_functions.py : set of functions used by the training.py script
 
 ### 1. Python, Tensorflow, Keras, OpenCV
 

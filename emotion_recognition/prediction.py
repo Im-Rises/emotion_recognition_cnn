@@ -1,4 +1,4 @@
-from typing import Union, Dict, List
+from typing import Union, Dict, List, Tuple
 
 import cv2
 import numpy as np
@@ -47,7 +47,7 @@ def get_sorted_results(pred: np.ndarray) -> list:
 
 def get_face_from_frame_with_classcascade(
     frame: np.ndarray, class_cascade, shape: tuple
-) -> Union[tuple[np.ndarray, np.ndarray], tuple[np.ndarray, None]]:
+) -> Union[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, None]]:
     frame = cv2.flip(frame, 1)
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = class_cascade.detectMultiScale(
@@ -68,7 +68,7 @@ def get_face_from_frame_with_classcascade(
 
 def get_face_from_frame(
     frame: np.ndarray, shape: tuple, class_cascade
-) -> Union[tuple[ndarray, ndarray], tuple[ndarray, None]]:
+) -> Union[Tuple[ndarray, ndarray], Tuple[ndarray, None]]:
     return get_face_from_frame_with_classcascade(frame, class_cascade, shape)
 
 
