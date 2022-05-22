@@ -55,6 +55,8 @@ Placeholder
 
 ### Quickstart
 
+Firstly you need to install python. I recommand you the python 3.6-3.8.
+
 If you just want to start the UI app, then just follow the `1. Python, Tensorflow, Keras` instructions just below.
 
 In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if ypu don't want the training to take more than 2 hours.  
