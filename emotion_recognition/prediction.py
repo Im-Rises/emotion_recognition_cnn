@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Dict, List
 
 import cv2
 import numpy as np
@@ -31,8 +31,8 @@ def get_emotion_probability_from_id(pred: np.ndarray, id) -> float:
 
 
 def sort_dict_and_return_tuple_of_scores_sorted(
-    dict_pred: dict[str, float]
-) -> list[str]:
+    dict_pred: Dict[str, float]
+) -> List[str]:
     return sorted(dict_pred.items(), key=lambda x: x[1])[::-1]
 
 
