@@ -156,6 +156,21 @@ Yohan COHEN-SOLAL :
 [CKPLUS](https://www.kaggle.com/shawon10/ckplus)  
 [FER-2013](https://www.kaggle.com/msambare/fer2013)  
 
+## Libraries
+
+Python :  
+<https://www.python.org>
+
+Tensorflow/Keras :  
+<https://www.tensorflow.org>
+
+OpenCV :  
+<https://www.datacorner.fr/reco-faciale-opencv/>
+<https://www.datacorner.fr/reco-faciale-opencv-2/>
+
+Flask :  
+<https://flask.palletsprojects.com/en/2.1.x/>
+
 ## Documentations
 
 CNN, ANN, RNN presentation :  
@@ -167,7 +182,3 @@ How to elaborate a CNN :
 
 Transfert learning :  
 <https://www.datacorner.fr/vgg-transfer-learning/>
-
-OpenCV :  
-<https://www.datacorner.fr/reco-faciale-opencv/>
-<https://www.datacorner.fr/reco-faciale-opencv-2/>
