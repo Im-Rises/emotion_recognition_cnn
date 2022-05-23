@@ -59,7 +59,7 @@ Firstly you need to install python. I recommand you the python 3.6-3.8.
 
 If you just want to start the UI app, then just follow the `1. Python, Tensorflow, Keras` instructions just below.
 
-In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if ypu don't want the training to take more than 2 hours.  
+In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.  
 
 main.py : start the web IHM (you need a camera).
 
@@ -89,7 +89,13 @@ Before using the program, you should install CUDA and SDK to allow the program t
 The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
 
 While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with your version of CUDA, cudNN etc... check the following website.  
+
 <https://www.tensorflow.org/install/source#gpu>
+
+#### Windows
+
+Follow this tutorial from Tensorflow :  
+<https://www.tensorflow.org/install/source_windows#install_gpu_support_optional>
 
 Visual Studio or redistribuable :  
 <https://visualstudio.microsoft.com/fr/downloads/>  
@@ -107,6 +113,14 @@ Tensorflow :
 Follow this video steps if you have difficulties <https://www.youtube.com/watch?v=hHWkvEcDBO0&list=LL>.  
 If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by using Google Collab.
 <https://colab.research.google.com>
+
+Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
+You can then use start the python console script in emotion_recognition/Models/training.py.
+
+#### Linux
+
+Follow this tutorial from Tensorflow :  
+<https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
 
 Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
 You can then use start the python console script in emotion_recognition/Models/training.py.
