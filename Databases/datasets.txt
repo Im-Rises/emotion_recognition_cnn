@@ -1,0 +1,7 @@
+To run the scripts, you need to put the FER-13 dataset here.
+
+FER-13:
+https://www.kaggle.com/datasets/msambare/fer2013
+
+CK+:
+https://www.kaggle.com/datasets/shawon10/ckplus

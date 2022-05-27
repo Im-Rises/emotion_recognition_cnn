@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <title>Emotion Recognition</title>
+    <link rel="stylesheet" href="../staticFiles/index.css" type="text/css">
+</head>
+
+<body>
+<h1>Emotion Recognition</h1>
+
+<div class="container">
+
+
+    <div class="left">
+        <p id="clock">no faces found</p>
+        <script>
+            const clock = document.getElementById("clock");
+
+            setInterval(() => {
+                fetch("{{ url_for('time_feed') }}")
+                    .then(response => {
+                        response.text().then(t => {
+                            clock.innerHTML = t
+                        })
+                    });
+            }, 10);
+        </script>
+    </div>
+    <div class="right">
+        <div class="col-lg-8  offset-lg-2">
+            <img src="{{ url_for('video_feed') }}" height="80%" alt="please wait...">
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
+
