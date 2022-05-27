@@ -4,16 +4,11 @@ from keras import Model
 from keras.callbacks import EarlyStopping
 from keras.layers import Flatten, Dense
 from keras.models import save_model
+from keras.optimizer_v2.gradient_descent import SGD
 from keras_preprocessing.image import ImageDataGenerator
 
 
-def get_data(
-        train_path: str,
-        test_path: str,
-        shape: list,
-        batch_size: int,
-        preprocess_input: object,
-) -> tuple:
+def get_data(parameters, preprocess_input: object) -> tuple:
     image_gen = ImageDataGenerator(
         # rescale=1 / 127.5,
         rotation_range=20,
@@ -27,28 +22,33 @@ def get_data(
 
     # create generators
     train_generator = image_gen.flow_from_directory(
-        train_path, target_size=shape, shuffle=True, batch_size=batch_size
+        parameters["train_path"], target_size=parameters["shape"], shuffle=True, batch_size=parameters["batch_size"]
     )
 
     test_generator = image_gen.flow_from_directory(
-        test_path, target_size=shape, shuffle=True, batch_size=batch_size
+        parameters["test_path"], target_size=parameters["shape"], shuffle=True, batch_size=parameters["batch_size"]
     )
 
     return (
-        glob(f"{train_path}/*/*.jp*g"),
-        glob(f"{test_path}/*/*.jp*g"),
+        glob(f"{parameters['train_path']}/*/*.jp*g"),
+        glob(f"{parameters['test_path']}/*/*.jp*g"),
         train_generator,
         test_generator,
     )
 
 
-def create_model(architecture, shape: list, nbr_classes: int, number_of_last_layers_trainable: int):
+def create_model(
+        architecture, parameters
+):
     model = architecture(
-        input_shape=shape + [3], weights="imagenet", include_top=False, classes=7
+        input_shape=parameters["shape"] + [3],
+        weights="imagenet",
+        include_top=False,
+        classes=parameters["nbr_classes"],
     )
 
     # Freeze existing VGG already trained weights
-    for layer in model.layers[:number_of_last_layers_trainable]:
+    for layer in model.layers[:parameters["number_of_last_layers_trainable"]]:
         layer.trainable = False
 
     # get the VGG output
@@ -56,11 +56,15 @@ def create_model(architecture, shape: list, nbr_classes: int, number_of_last_lay
 
     # Add new dense layer at the end
     x = Flatten()(out)
-    x = Dense(nbr_classes, activation="softmax")(x)
+    x = Dense(parameters["nbr_classes"], activation="softmax")(x)
 
     model = Model(inputs=model.input, outputs=x)
 
-    model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
+    opti = SGD(lr=parameters["learning_rate"], momentum=parameters["momentum"], nesterov=parameters["nesterov"])
+
+    model.compile(
+        loss="categorical_crossentropy", optimizer=opti, metrics=["accuracy"]
+    )
 
     # model.summary()
 
@@ -71,18 +75,17 @@ def fit(
         model,
         train_generator,
         test_generator,
-        epochs,
         train_files,
         test_files,
-        batch_size,
+        parameters
 ):
     early_stop = EarlyStopping(monitor="val_accuracy", patience=2)
     return model.fit(
         train_generator,
         validation_data=test_generator,
-        epochs=epochs,
-        steps_per_epoch=len(train_files) // batch_size,
-        validation_steps=len(test_files) // batch_size,
+        epochs=parameters["epochs"],
+        steps_per_epoch=len(train_files) // parameters["batch_size"],
+        validation_steps=len(test_files) // parameters["batch_size"],
         callbacks=[early_stop],
     )
 

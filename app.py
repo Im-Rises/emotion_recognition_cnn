@@ -22,7 +22,7 @@ emotions = None
 # instatiate flask app
 app = Flask(__name__, template_folder="./templates", static_folder="./staticFiles")
 
-camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(1)
 
 emotions_with_smiley = {
     "happy": f"{emojize(':face_with_tears_of_joy:')} HAPPY",
@@ -54,7 +54,7 @@ def gen_frames():  # generate frame by frame from camera
 
 
 def magnify_emotion(emotion):
-    return f"<p>{emotions_with_smiley[emotion[0]]} :{int(emotion[1]*100)} %</p>"
+    return f"<p>{emotions_with_smiley[emotion[0]]} :{int(emotion[1] * 100)} %</p>"
 
 
 def magnify_results(emotions):
@@ -102,13 +102,13 @@ def tasks():
                 camera.release()
                 cv2.destroyAllWindows()
             else:
-                camera = cv2.VideoCapture(0)
+                camera = cv2.VideoCapture(1)
                 switch = 1
 
     return render_template("index.html")
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True, port=3134)
+    app.run(host="0.0.0.0", port=3134)
     camera.release()
     cv2.destroyAllWindows()

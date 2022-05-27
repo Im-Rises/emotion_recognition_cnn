@@ -4,6 +4,7 @@ from keras.applications.inception_resnet_v2 import InceptionResNetV2
 from keras.applications.inception_v3 import InceptionV3
 from keras.applications.resnet import ResNet50
 from keras.applications.resnet_v2 import ResNet50V2
+from keras.applications.resnet import ResNet101
 from keras.applications.vgg16 import VGG16
 from keras.applications.xception import Xception
 from matplotlib import pyplot as plt
@@ -25,7 +26,10 @@ if __name__ == "__main__":
         "test_path": "../../Databases/FER-2013/test/",
         "batch_size": 8,
         "epochs": 50,
-        "number_of_last_layers_trainable": 5,
+        "number_of_last_layers_trainable": 10,
+        "learning_rate": 0.001,
+        "nesterov": True,
+        "momentum": 0.9
     }
     model, filename, preprocess_input = None, None, None
 
@@ -37,6 +41,7 @@ if __name__ == "__main__":
         "\n\t-4- inception_resnet_v2"
         "\n\t-5- inception_v3"
         "\n\t-6- resnet50v2"
+        "\n\t-7- resnet101"
         "\n>>>"
     )
     if choice == "1":
@@ -63,8 +68,12 @@ if __name__ == "__main__":
         model = ResNet50V2
         filename = "resnet50v2"
         preprocess_input = keras.applications.resnet_v2.preprocess_input
+    elif choice == "7":
+        model = ResNet101
+        filename = "resnet101"
+        preprocess_input = keras.applications.resnet.preprocess_input
     else:
-        print("you have to choose a number between 1 and 6")
+        print("you have to choose a number between 1 and 7")
         exit(1)
 
     if model is not None and filename is not None:
@@ -74,28 +83,22 @@ if __name__ == "__main__":
         )
 
         train_files, test_files, train_generator, test_generator = get_data(
-            train_path=parameters["train_path"],
-            test_path=parameters["test_path"],
-            shape=parameters["shape"],
-            batch_size=parameters["batch_size"],
             preprocess_input=preprocess_input,
+            parameters=parameters
         )
 
         model = create_model(
             architecture=model,
-            shape=parameters["shape"],
-            nbr_classes=parameters["nbr_classes"],
-            number_of_last_layers_trainable=5,
+            parameters=parameters
         )
 
         history = fit(
             model=model,
             train_generator=train_generator,
             test_generator=test_generator,
-            epochs=parameters["epochs"],
             train_files=train_files,
             test_files=test_files,
-            batch_size=parameters["batch_size"],
+            parameters=parameters
         )
 
         score = evaluation_model(model, test_generator)
