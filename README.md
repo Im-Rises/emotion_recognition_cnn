@@ -28,7 +28,7 @@ The app is using the CNN (Convolutional neural network) to analyse the emotion o
 It will learn from different databases that contains several images of persons showing one of the six main emotion.
 The AI learn from this database by analysing each image, once done our model is able to analyse faces images out of the database.
 
-## Features
+### Features
 
 The app features :
 
@@ -55,9 +55,19 @@ Placeholder
 
 ### Quickstart
 
+Firstly you need to install python. I recommand you the python 3.6-3.8.
+
 If you just want to start the UI app, then just follow the `1. Python, Tensorflow, Keras` instructions just below.
 
-In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if ypu don't want the training to take more than 2 hours.  
+In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.  
+
+main.py : start the web IHM (you need a camera).
+
+prediction.py : set of functions used to handle opencv, models, etc... (mostly used by main.py)
+
+emotion_recognition/Models/training.py : train the model/architecture selected when starting the script.
+
+emotion_recognition/Models/common_functions.py : set of functions used by the training.py script
 
 ### 1. Python, Tensorflow, Keras, OpenCV
 
@@ -79,7 +89,13 @@ Before using the program, you should install CUDA and SDK to allow the program t
 The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
 
 While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with your version of CUDA, cudNN etc... check the following website.  
+
 <https://www.tensorflow.org/install/source#gpu>
+
+#### Windows
+
+Follow this tutorial from Tensorflow :  
+<https://www.tensorflow.org/install/source_windows#install_gpu_support_optional>
 
 Visual Studio or redistribuable :  
 <https://visualstudio.microsoft.com/fr/downloads/>  
@@ -97,6 +113,14 @@ Tensorflow :
 Follow this video steps if you have difficulties <https://www.youtube.com/watch?v=hHWkvEcDBO0&list=LL>.  
 If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by using Google Collab.
 <https://colab.research.google.com>
+
+Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
+You can then use start the python console script in emotion_recognition/Models/training.py.
+
+#### Linux
+
+Follow this tutorial from Tensorflow :  
+<https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
 
 Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
 You can then use start the python console script in emotion_recognition/Models/training.py.
@@ -132,6 +156,21 @@ Yohan COHEN-SOLAL :
 [CKPLUS](https://www.kaggle.com/shawon10/ckplus)  
 [FER-2013](https://www.kaggle.com/msambare/fer2013)  
 
+## Libraries
+
+Python :  
+<https://www.python.org>
+
+Tensorflow/Keras :  
+<https://www.tensorflow.org>
+
+OpenCV :  
+<https://www.datacorner.fr/reco-faciale-opencv/>
+<https://www.datacorner.fr/reco-faciale-opencv-2/>
+
+Flask :  
+<https://flask.palletsprojects.com/en/2.1.x/>
+
 ## Documentations
 
 CNN, ANN, RNN presentation :  
@@ -143,7 +182,3 @@ How to elaborate a CNN :
 
 Transfert learning :  
 <https://www.datacorner.fr/vgg-transfer-learning/>
-
-OpenCV :  
-<https://www.datacorner.fr/reco-faciale-opencv/>
-<https://www.datacorner.fr/reco-faciale-opencv-2/>
