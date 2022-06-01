@@ -1,4 +1,5 @@
 # Ignore CNN saved model language in GitHub language summary :
-
 *.pb linguist-vendored
-# emotion_recognition_cnn/emotion_recognition_cnn/savedModel/** linguist-vendored
+
+# When commiting to the remote repository all files are stored with end of file LF.
+text=auto eol=lf
