@@ -16,6 +16,7 @@ from common_functions import (
     fit,
     evaluation_model,
     saveModel,
+    cascading_model,
 )
 
 if __name__ == "__main__":
@@ -29,7 +30,7 @@ if __name__ == "__main__":
         "number_of_last_layers_trainable": 10,
         "learning_rate": 0.001,
         "nesterov": True,
-        "momentum": 0.9
+        "momentum": 0.9,
     }
     model, filename, preprocess_input = None, None, None
 
@@ -83,14 +84,10 @@ if __name__ == "__main__":
         )
 
         train_files, test_files, train_generator, test_generator = get_data(
-            preprocess_input=preprocess_input,
-            parameters=parameters
+            preprocess_input=preprocess_input, parameters=parameters
         )
 
-        model = create_model(
-            architecture=model,
-            parameters=parameters
-        )
+        model = create_model(architecture=model, parameters=parameters)
 
         history = fit(
             model=model,
@@ -98,7 +95,7 @@ if __name__ == "__main__":
             test_generator=test_generator,
             train_files=train_files,
             test_files=test_files,
-            parameters=parameters
+            parameters=parameters,
         )
 
         score = evaluation_model(model, test_generator)
