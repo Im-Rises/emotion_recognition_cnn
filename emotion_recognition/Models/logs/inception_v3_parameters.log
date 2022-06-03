@@ -1,0 +1,3 @@
+{'shape': [80, 80], 'nbr_classes': 7, 'train_path': '../../Databases/FER-2013/train/', 'test_path': '../../Databases/FER-2013/test/', 'batch_size': 8, 'epochs': 30, 'number_of_last_layers_trainable': 5}
+val_acc: [0.24623745679855347, 0.24094203114509583, 0.24247491359710693]
+val_loss: [1.2611900568008423, 19.997011184692383, 26.615943908691406]

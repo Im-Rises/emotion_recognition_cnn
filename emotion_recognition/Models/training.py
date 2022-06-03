@@ -22,8 +22,8 @@ if __name__ == "__main__":
     parameters = {
         "shape": [80, 80],
         "nbr_classes": 7,
-        "train_path": "../../Databases/FER-2013/train/",
-        "test_path": "../../Databases/FER-2013/test/",
+        "train_path": "../../databases/FER-2013/train/",
+        "test_path": "../../databases/FER-2013/test/",
         "batch_size": 8,
         "epochs": 50,
         "number_of_last_layers_trainable": 10,
