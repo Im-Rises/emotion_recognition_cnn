@@ -1,13 +1,13 @@
-from typing import Union
+from typing import Union, Dict, List, Tuple
 
 import cv2
 import numpy as np
 from PIL import Image
 from keras.backend import expand_dims
-from keras.models import load_model
+from keras.models import load_model, Model
 from numpy import ndarray
 
-emotions: dict[int, str] = {
+emotions = {
     0: "angry",
     1: "disgust",
     2: "fear",
@@ -16,10 +16,6 @@ emotions: dict[int, str] = {
     5: "sad",
     6: "surprise",
 }
-
-classCascade = cv2.CascadeClassifier("ClassifierForOpenCV/frontalface_default.xml")
-
-model = load_model("./Models/trained_models/savedModel")
 
 
 def get_label_from_id(id: int) -> str:
@@ -35,8 +31,8 @@ def get_emotion_probability_from_id(pred: np.ndarray, id) -> float:
 
 
 def sort_dict_and_return_tuple_of_scores_sorted(
-        dict_pred: dict[str, float]
-) -> list[str]:
+    dict_pred: Dict[str, float]
+) -> List[str]:
     return sorted(dict_pred.items(), key=lambda x: x[1])[::-1]
 
 
@@ -50,8 +46,8 @@ def get_sorted_results(pred: np.ndarray) -> list:
 
 
 def get_face_from_frame_with_classcascade(
-        frame: np.ndarray, class_cascade, shape: tuple
-) -> Union[tuple[np.ndarray, np.ndarray], tuple[np.ndarray, None]]:
+    frame: np.ndarray, class_cascade, shape: tuple
+) -> Union[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, None]]:
     frame = cv2.flip(frame, 1)
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = class_cascade.detectMultiScale(
@@ -63,7 +59,7 @@ def get_face_from_frame_with_classcascade(
     )
     for (x, y, w, h) in faces:
         if x is not None and y is not None:
-            face = Image.fromarray(frame[y: y + h, x: x + w]).resize(shape)
+            face = Image.fromarray(frame[y : y + h, x : x + w]).resize(shape)
             face = expand_dims(np.asarray(face), 0)
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             return frame, face
@@ -71,25 +67,24 @@ def get_face_from_frame_with_classcascade(
 
 
 def get_face_from_frame(
-        frame: np.ndarray, shape: tuple
-) -> Union[tuple[ndarray, ndarray], tuple[ndarray, None]]:
-    return get_face_from_frame_with_classcascade(frame, classCascade, shape)
+    frame: np.ndarray, shape: tuple, class_cascade
+) -> Union[Tuple[ndarray, ndarray], Tuple[ndarray, None]]:
+    return get_face_from_frame_with_classcascade(frame, class_cascade, shape)
 
 
-def get_emotions_from_face(face) -> Union[list, None]:
-    if face is not None:
-        pred = model.predict(x=face)
-        return get_sorted_results(pred)
-    return None
+def get_emotions_from_face(face, model) -> Union[list, None]:
+    return get_sorted_results(model.predict(x=face)) if face is not None else None
 
 
-def camera_modified(face_shape: tuple):
-    cap = cv2.VideoCapture(0)
+def camera_modified(face_shape: tuple, model: Model, class_cascade):
+    cap = cv2.VideoCapture(1)
     while cap.isOpened():
         ret, frame = cap.read()
         if ret:
-            frame, face = get_face_from_frame(cv2.flip(frame, 1), face_shape)
-            yield frame, get_emotions_from_face(face)
+            frame, face = get_face_from_frame(
+                cv2.flip(frame, 1), face_shape, class_cascade=class_cascade
+            )
+            yield frame, get_emotions_from_face(face, model)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
     cap.release()
@@ -98,8 +93,12 @@ def camera_modified(face_shape: tuple):
 
 if __name__ == "__main__":
     # below it's just an example of how to use this file
-    face_shape = (48, 48)
-    for frame, emotion in camera_modified(face_shape):
+    face_shape = (80, 80)
+    model = load_model("./Models/trained_models/resnet50")
+    class_cascade = cv2.CascadeClassifier("ClassifierForOpenCV/frontalface_default.xml")
+    for frame, emotion in camera_modified(
+        face_shape, model, class_cascade=class_cascade
+    ):
         # update all the interface here
         cv2.imshow("frame", frame)
         # the "emotion" array is a sorted array of all emotions with their probabilities
