@@ -137,6 +137,6 @@ if __name__ == "__main__":
 
         if choice == "O":
             saveModel(filename=filename, model=model)
-            with open(f"./trained_models/{filename}_parameters.txt", "w") as file:
+            with open(f"./trained_models/{filename}_parameters.log", "w") as file:
                 file.write(f"{parameters}\nval_acc: {val_acc}\nval_loss: {val_loss}")
                 file.close()
