@@ -2,8 +2,6 @@ import os
 from glob import glob
 
 from keras import Model
-from keras.applications.resnet import ResNet50
-from keras.applications.vgg16 import VGG16
 from keras.callbacks import EarlyStopping
 from keras.layers import (
     Flatten,

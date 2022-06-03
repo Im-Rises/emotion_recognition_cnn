@@ -125,8 +125,8 @@ if __name__ == "__main__":
         plt.xlabel("epoch")
         plt.show()
 
-        if os.path.isfile(f"./trained_models/{filename}_parameters.txt"):
-            with open(f"./trained_models/{filename}_parameters.txt", "r") as file:
+        if os.path.isfile(f"./logs/{filename}_parameters.log"):
+            with open(f"./logs/{filename}_parameters.log", "r") as file:
                 print(file.read())
                 file.close()
 
@@ -134,6 +134,6 @@ if __name__ == "__main__":
 
         if choice == "O":
             saveModel(filename=filename, model=model)
-            with open(f"./trained_models/{filename}_parameters.txt", "w") as file:
+            with open(f"./logs/{filename}_parameters.log", "w") as file:
                 file.write(f"{parameters}\nval_acc: {val_acc}\nval_loss: {val_loss}")
                 file.close()

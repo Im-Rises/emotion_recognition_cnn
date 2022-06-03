@@ -1,11 +1,13 @@
 # My selected files/folders ignore
 
-Databases/*/**
-trash/
+[Dd]atabases/*/**
+[Tt]rash/
+[Mm]yDocs/
+**/trained_models/*/**
 .idea/
 *.pb
-**/trained_models/*/**
 *.zip
+*.rar
 
 # Visual Studio files/folders ignore
 
