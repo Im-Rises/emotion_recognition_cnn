@@ -21,7 +21,7 @@ from matplotlib import pyplot as plt
 from tensorflow import keras
 
 
-def get_data(parameters, preprocess_input: object) -> tuple:
+def get_data(parameters, preprocess_input=None) -> tuple:
     image_gen = ImageDataGenerator(
         # rescale=1 / 127.5,
         rotation_range=20,

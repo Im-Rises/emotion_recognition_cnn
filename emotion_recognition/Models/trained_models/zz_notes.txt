@@ -1,3 +1,6 @@
 resnet50: works well 
 resnet50v2 : doesn't work
+resnet101:works well
 inception_resnet_v2 : long time to load it, and doesn't work
+alexnet:il fume
+savedModel: normally works but only for 48 48

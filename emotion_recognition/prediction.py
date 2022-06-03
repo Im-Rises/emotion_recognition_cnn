@@ -77,7 +77,7 @@ def get_emotions_from_face(face, model) -> Union[list, None]:
 
 
 def camera_modified(face_shape: tuple, model: Model, class_cascade):
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     while cap.isOpened():
         ret, frame = cap.read()
         if ret:
@@ -94,7 +94,7 @@ def camera_modified(face_shape: tuple, model: Model, class_cascade):
 if __name__ == "__main__":
     # below it's just an example of how to use this file
     face_shape = (80, 80)
-    model = load_model("./Models/trained_models/resnet50")
+    model = load_model("./Models/trained_models/resnet101")
     class_cascade = cv2.CascadeClassifier("ClassifierForOpenCV/frontalface_default.xml")
     for frame, emotion in camera_modified(
         face_shape, model, class_cascade=class_cascade
