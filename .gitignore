@@ -1,12 +1,11 @@
 # My selected files/folders ignore
 
 [Dd]atabases/*/**
-emotion_recognition/[Mm]odels/trained_models/*/**
 [Tt]rash/
 [Mm]yDocs/
+**/trained_models/*/**
 .idea/
 *.pb
-**/trained_models/*/**
 *.zip
 *.rar
 
