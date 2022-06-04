@@ -50,7 +50,7 @@ def rewrite_image_from_df(df):
         else:
             image = cv2.imread(f"./FERPlus/output/FER2013Test/{item['Image name']}")
         acc = item["Usage"]
-        if acc == "./FERPlus/FER2013Train":
+        if acc == "Training":
             cv2.imwrite(
                 f"./FER-2013/train/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
                 image,

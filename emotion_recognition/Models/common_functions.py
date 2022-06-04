@@ -105,3 +105,4 @@ def evaluation_model(model, test_generator):
 
 def saveModel(filename, model):
     save_model(model=model, filepath=f"./trained_models/{filename}")
+    model.save_weights(f"./trained_models/{filename}.h5")
