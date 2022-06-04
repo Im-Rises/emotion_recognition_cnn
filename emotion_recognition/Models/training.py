@@ -29,7 +29,7 @@ if __name__ == "__main__":
         "number_of_last_layers_trainable": 10,
         "learning_rate": 0.001,
         "nesterov": True,
-        "momentum": 0.9
+        "momentum": 0.9,
     }
     model, filename, preprocess_input = None, None, None
 
@@ -83,14 +83,10 @@ if __name__ == "__main__":
         )
 
         train_files, test_files, train_generator, test_generator = get_data(
-            preprocess_input=preprocess_input,
-            parameters=parameters
+            preprocess_input=preprocess_input, parameters=parameters
         )
 
-        model = create_model(
-            architecture=model,
-            parameters=parameters
-        )
+        model = create_model(architecture=model, parameters=parameters)
 
         history = fit(
             model=model,
@@ -98,7 +94,7 @@ if __name__ == "__main__":
             test_generator=test_generator,
             train_files=train_files,
             test_files=test_files,
-            parameters=parameters
+            parameters=parameters,
         )
 
         score = evaluation_model(model, test_generator)
@@ -129,14 +125,14 @@ if __name__ == "__main__":
         plt.show()
 
         if os.path.isfile(f"./logs/{filename}_parameters.log"):
-            with open(f"./logs/{filename}_parameters.log", "r") as file:
+            with open(f"./logs/{filename}_parameters_ferplus.log", "r") as file:
                 print(file.read())
                 file.close()
 
         choice = input("save model? (O/N)\n>>>")
 
         if choice == "O":
-            saveModel(filename=filename, model=model)
-            with open(f"./logs/{filename}_parameters.log", "w") as file:
+            saveModel(filename=f"{filename}_ferplus", model=model)
+            with open(f"./logs/{filename}_parameters_ferplus.log", "w") as file:
                 file.write(f"{parameters}\nval_acc: {val_acc}\nval_loss: {val_loss}")
                 file.close()

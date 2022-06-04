@@ -77,7 +77,7 @@ def get_emotions_from_face(face, model) -> Union[list, None]:
 
 
 def camera_modified(face_shape: tuple, model: Model, class_cascade):
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     while cap.isOpened():
         ret, frame = cap.read()
         if ret:

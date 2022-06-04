@@ -22,11 +22,17 @@ def get_data(parameters, preprocess_input: object) -> tuple:
 
     # create generators
     train_generator = image_gen.flow_from_directory(
-        parameters["train_path"], target_size=parameters["shape"], shuffle=True, batch_size=parameters["batch_size"]
+        parameters["train_path"],
+        target_size=parameters["shape"],
+        shuffle=True,
+        batch_size=parameters["batch_size"],
     )
 
     test_generator = image_gen.flow_from_directory(
-        parameters["test_path"], target_size=parameters["shape"], shuffle=True, batch_size=parameters["batch_size"]
+        parameters["test_path"],
+        target_size=parameters["shape"],
+        shuffle=True,
+        batch_size=parameters["batch_size"],
     )
 
     return (
@@ -37,9 +43,14 @@ def get_data(parameters, preprocess_input: object) -> tuple:
     )
 
 
-def create_model(
-        architecture, parameters
-):
+def fine_tuning(model: Model, parameters):
+    # fine tuning
+    for layer in model.layers[: parameters["number_of_last_layers_trainable"]]:
+        layer.trainable = False
+    return model
+
+
+def create_model(architecture, parameters):
     model = architecture(
         input_shape=parameters["shape"] + [3],
         weights="imagenet",
@@ -48,7 +59,7 @@ def create_model(
     )
 
     # Freeze existing VGG already trained weights
-    for layer in model.layers[:parameters["number_of_last_layers_trainable"]]:
+    for layer in model.layers[: parameters["number_of_last_layers_trainable"]]:
         layer.trainable = False
 
     # get the VGG output
@@ -60,25 +71,20 @@ def create_model(
 
     model = Model(inputs=model.input, outputs=x)
 
-    opti = SGD(lr=parameters["learning_rate"], momentum=parameters["momentum"], nesterov=parameters["nesterov"])
-
-    model.compile(
-        loss="categorical_crossentropy", optimizer=opti, metrics=["accuracy"]
+    opti = SGD(
+        lr=parameters["learning_rate"],
+        momentum=parameters["momentum"],
+        nesterov=parameters["nesterov"],
     )
+
+    model.compile(loss="categorical_crossentropy", optimizer=opti, metrics=["accuracy"])
 
     # model.summary()
 
     return model
 
 
-def fit(
-        model,
-        train_generator,
-        test_generator,
-        train_files,
-        test_files,
-        parameters
-):
+def fit(model, train_generator, test_generator, train_files, test_files, parameters):
     early_stop = EarlyStopping(monitor="val_accuracy", patience=2)
     return model.fit(
         train_generator,
