@@ -7,7 +7,11 @@ import pandas as pd
 
 
 def get_best_emotion(list_of_emotions, emotions):
-    return list_of_emotions[np.argmax(emotions)]
+    best_emotion = np.argmax(emotions)
+    if best_emotion == "neutral" and sum(emotions[1::]) > 0:
+        emotions[best_emotion] = 0
+        best_emotion = np.argmax(emotions)
+    return list_of_emotions[best_emotion]
 
 
 def read_and_clean_csv(path):
@@ -20,6 +24,18 @@ def read_and_clean_csv(path):
 def rewrite_image_from_df(df):
     # we setup an accumulator to print if we have finished a task
     acc = ""
+    emotions = [
+        "neutral",
+        "happy",
+        "surprise",
+        "sad",
+        "angry",
+        "disgust",
+        "fear",
+        "contempt",
+        "unknown",
+        "NF",
+    ]
 
     # we rewrite all the image files
     for row in range(len(df)):
@@ -30,12 +46,12 @@ def rewrite_image_from_df(df):
         acc = item["Usage"]
         if acc == "Training":
             cv2.imwrite(
-                f"../FER-2013/train/{get_best_emotion(df.keys()[2::], item[2::])}/{item['Image name']}",
+                f"../FER-2013/train/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
                 image,
             )
         else:
             cv2.imwrite(
-                f"../FER-2013/test/{get_best_emotion(df.keys()[2::], item[2::])}/{item['Image name']}",
+                f"../FER-2013/test/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
                 image,
             )
 
