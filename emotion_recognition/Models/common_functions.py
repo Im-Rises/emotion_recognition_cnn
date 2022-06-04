@@ -1,25 +1,14 @@
-import os
 from glob import glob
 
 from keras import Model
 from keras.callbacks import EarlyStopping
-from keras.layers import (
-    Flatten,
-    Dense,
-    Conv2D,
-    BatchNormalization,
-    MaxPooling2D,
-    Activation,
-    Dropout,
-)
-from keras.models import save_model, Sequential
+from keras.layers import Flatten, Dense
+from keras.models import save_model
 from keras.optimizer_v2.gradient_descent import SGD
 from keras_preprocessing.image import ImageDataGenerator
-from matplotlib import pyplot as plt
-from tensorflow import keras
 
 
-def get_data(parameters, preprocess_input=None) -> tuple:
+def get_data(parameters, preprocess_input: object) -> tuple:
     image_gen = ImageDataGenerator(
         # rescale=1 / 127.5,
         rotation_range=20,
@@ -69,7 +58,11 @@ def create_model(architecture, parameters):
         classes=parameters["nbr_classes"],
     )
 
-    # get the model output
+    # Freeze existing VGG already trained weights
+    for layer in model.layers[: parameters["number_of_last_layers_trainable"]]:
+        layer.trainable = False
+
+    # get the VGG output
     out = model.output
 
     # Add new dense layer at the end
@@ -86,44 +79,7 @@ def create_model(architecture, parameters):
 
     model.compile(loss="categorical_crossentropy", optimizer=opti, metrics=["accuracy"])
 
-    return model
-
-
-def alexnet_model(parameters):
-    model = Sequential()
-    model.add(
-        Conv2D(
-            96,
-            (11, 11),
-            input_shape=parameters["shape"] + [3],
-            activation="relu",
-            padding="same",
-        )
-    )
-    model.add(Conv2D(256, (5, 5), activation="relu", padding="same"))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(384, (3, 3), activation="relu", padding="same"))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Conv2D(384, (3, 3), activation="relu", padding="same"))
-    model.add(Conv2D(384, (3, 3), activation="relu", padding="same"))
-    model.add(BatchNormalization())
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-
-    model.add(Flatten())
-    model.add(Dense(128))
-    model.add(BatchNormalization())
-    model.add(Activation("relu"))
-    model.add(Dropout(0.2))
-    model.add(Dense(7))
-    model.add(Activation("softmax"))  # Formats data to make them be like probabilities
-
-    model.compile(
-        loss="categorical_crossentropy", metrics=["accuracy"], optimizer="adam"
-    )
+    # model.summary()
 
     return model
 
@@ -149,75 +105,3 @@ def evaluation_model(model, test_generator):
 
 def saveModel(filename, model):
     save_model(model=model, filepath=f"./trained_models/{filename}")
-
-
-if __name__ == "__main__":
-    preprocess_input = keras.applications.resnet.preprocess_input
-    filename = "alexnet"
-
-    parameters = {
-        "shape": [80, 80],
-        "nbr_classes": 7,
-        "train_path": "../../Databases/FER-2013/train/",
-        "test_path": "../../Databases/FER-2013/test/",
-        "batch_size": 8,
-        "epochs": 50,
-        "number_of_last_layers_trainable": 10,
-        "learning_rate": 0.001,
-        "nesterov": True,
-        "momentum": 0.9,
-    }
-    train_files, test_files, train_generator, test_generator = get_data(
-        preprocess_input=preprocess_input, parameters=parameters
-    )
-
-    model = alexnet_model(parameters)
-
-    history = fit(
-        model=model,
-        train_generator=train_generator,
-        test_generator=test_generator,
-        train_files=train_files,
-        test_files=test_files,
-        parameters=parameters,
-    )
-
-    score = evaluation_model(model, test_generator)
-
-    acc = history.history["accuracy"]
-    val_acc = history.history["val_accuracy"]
-
-    loss = history.history["loss"]
-    val_loss = history.history["val_loss"]
-
-    plt.figure(figsize=(8, 8))
-    plt.subplot(2, 1, 1)
-    plt.plot(acc, label="Training Accuracy")
-    plt.plot(val_acc, label="Validation Accuracy")
-    plt.legend(loc="lower right")
-    plt.ylabel("Accuracy")
-    plt.ylim([min(plt.ylim()), 1])
-    plt.title("Training and Validation Accuracy")
-
-    plt.subplot(2, 1, 2)
-    plt.plot(loss, label="Training Loss")
-    plt.plot(val_loss, label="Validation Loss")
-    plt.legend(loc="upper right")
-    plt.ylabel("Cross Entropy")
-    plt.ylim([0, 1.0])
-    plt.title("Training and Validation Loss")
-    plt.xlabel("epoch")
-    plt.show()
-
-    if os.path.isfile(f"./trained_models/{filename}_parameters.txt"):
-        with open(f"./trained_models/{filename}_parameters.txt", "r") as file:
-            print(file.read())
-            file.close()
-
-    choice = input("save model? (O/N)\n>>>")
-
-    if choice == "O":
-        saveModel(filename=filename, model=model)
-        with open(f"./trained_models/{filename}_parameters.txt", "w") as file:
-            file.write(f"{parameters}\nval_acc: {val_acc}\nval_loss: {val_loss}")
-            file.close()
