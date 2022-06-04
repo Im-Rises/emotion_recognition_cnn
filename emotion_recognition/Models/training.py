@@ -124,15 +124,17 @@ if __name__ == "__main__":
         plt.xlabel("epoch")
         plt.show()
 
+        filename = f"{filename}_ferplus"
+
         if os.path.isfile(f"./logs/{filename}_parameters.log"):
-            with open(f"./logs/{filename}_parameters_ferplus.log", "r") as file:
+            with open(f"./logs/{filename}_parameters.log", "r") as file:
                 print(file.read())
                 file.close()
 
         choice = input("save model? (O/N)\n>>>")
 
         if choice == "O":
-            saveModel(filename=f"{filename}_ferplus", model=model)
-            with open(f"./logs/{filename}_parameters_ferplus.log", "w") as file:
+            saveModel(filename=f"{filename}", model=model)
+            with open(f"./logs/{filename}_parameters.log", "w") as file:
                 file.write(f"{parameters}\nval_acc: {val_acc}\nval_loss: {val_loss}")
                 file.close()
