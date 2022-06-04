@@ -7,4 +7,4 @@ setInterval(() => {
                 clock.innerHTML = t
             })
         });
-}, 100);
+}, 1000);

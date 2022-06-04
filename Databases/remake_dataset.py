@@ -22,6 +22,7 @@ def read_and_clean_csv(path):
 
 
 def rewrite_image_from_df(df):
+    print("Moving images from FERPlus inside FER-2013")
     # we setup an accumulator to print if we have finished a task
     acc = ""
     emotions = [
@@ -42,20 +43,26 @@ def rewrite_image_from_df(df):
         item = df.iloc[row]
         if item["Usage"] not in ["", acc]:
             print(f"{item['Usage']} done")
-        image = cv2.imread(f"{item['Usage']}/{item['Image name']}")
+        if (item['Usage'] == "Training"):
+            image = cv2.imread(f"./FERPlus/output/FER2013Train/{item['Image name']}")
+        elif item['Usage'] == "PublicTest":
+            image = cv2.imread(f"./FERPlus/output/FER2013Valid/{item['Image name']}")
+        else:
+            image = cv2.imread(f"./FERPlus/output/FER2013Test/{item['Image name']}")
         acc = item["Usage"]
-        if acc == "Training":
+        if acc == "./FERPlus/FER2013Train":
             cv2.imwrite(
-                f"../FER-2013/train/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
+                f"./FER-2013/train/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
                 image,
             )
         else:
             cv2.imwrite(
-                f"../FER-2013/test/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
+                f"./FER-2013/test/{get_best_emotion(emotions, item[2::])}/{item['Image name']}",
                 image,
             )
 
 
 if __name__ == "__main__":
-    df = read_and_clean_csv("fer2013new.csv")
+    os.system('python ./FERPLUS/src/generate_training_data.py -d ./FERPLUS/output -fer ./FER-2013/fer2013.csv -ferplus ./FERPLUS/fer2013new.csv')
+    df = read_and_clean_csv("./FERPlus/fer2013new.csv")
     rewrite_image_from_df(df)

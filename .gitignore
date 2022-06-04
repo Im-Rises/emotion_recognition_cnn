@@ -1,11 +1,6 @@
 # My selected files/folders ignore
 
-#[Dd]atabases/*/**
-[Dd]atabases/**/*.png
-[Dd]atabases/**/*.jpg
-[Dd]atabases/**/*.csv
-[Dd]atabases/**/*.zip
-[Dd]atabases/**/*.md
+[Dd]atabases/*/**
 [Tt]rash/
 [Mm]yDocs/
 **/trained_models/*/**

@@ -13,7 +13,7 @@ switch, out, capture, rec_frame = (
 )
 
 face_shape = (80, 80)
-model = load_model("./emotion_recognition/Models/trained_models/resnet50_ferplus")
+model = load_model("./emotion_recognition/Models/trained_models/resnet50")
 class_cascade = cv2.CascadeClassifier(
     "./emotion_recognition/ClassifierForOpenCV/frontalface_default.xml"
 )
@@ -101,7 +101,7 @@ def tasks():
                 camera.release()
                 cv2.destroyAllWindows()
             else:
-                camera = cv2.VideoCapture(1)
+                camera = cv2.VideoCapture(0)
                 switch = 1
 
     return render_template("index.html")
