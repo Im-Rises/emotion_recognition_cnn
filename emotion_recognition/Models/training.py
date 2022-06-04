@@ -16,15 +16,14 @@ from common_functions import (
     fit,
     evaluation_model,
     saveModel,
-    cascading_model,
 )
 
 if __name__ == "__main__":
     parameters = {
         "shape": [80, 80],
-        "nbr_classes": 7,
-        "train_path": "../../Databases/FER-2013/train/",
-        "test_path": "../../Databases/FER-2013/test/",
+        "nbr_classes": 9,
+        "train_path": "../../Databases/ferplus/remake/Training",
+        "test_path": "../../Databases/ferplus/remake/PrivateTest",
         "batch_size": 8,
         "epochs": 50,
         "number_of_last_layers_trainable": 10,
@@ -126,14 +125,14 @@ if __name__ == "__main__":
         plt.show()
 
         if os.path.isfile(f"./logs/{filename}_parameters.log"):
-            with open(f"./logs/{filename}_parameters.log", "r") as file:
+            with open(f"./logs/{filename}_parameters_ferplus.log", "r") as file:
                 print(file.read())
                 file.close()
 
         choice = input("save model? (O/N)\n>>>")
 
         if choice == "O":
-            saveModel(filename=filename, model=model)
-            with open(f"./logs/{filename}_parameters.log", "w") as file:
+            saveModel(filename=f"{filename}_ferplus", model=model)
+            with open(f"./logs/{filename}_parameters_ferplus.log", "w") as file:
                 file.write(f"{parameters}\nval_acc: {val_acc}\nval_loss: {val_loss}")
                 file.close()
