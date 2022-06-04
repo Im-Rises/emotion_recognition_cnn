@@ -1,3 +1,4 @@
+import contextlib
 import cv2
 from flask import Flask, render_template, Response, request
 from keras.models import load_model
@@ -12,7 +13,7 @@ switch, out, capture, rec_frame = (
 )
 
 face_shape = (80, 80)
-model = load_model("./emotion_recognition/Models/trained_models/resnet50")
+model = load_model("./emotion_recognition/Models/trained_models/resnet50_ferplus")
 class_cascade = cv2.CascadeClassifier(
     "./emotion_recognition/ClassifierForOpenCV/frontalface_default.xml"
 )
@@ -22,7 +23,7 @@ emotions = None
 # instatiate flask app
 app = Flask(__name__, template_folder="./templates", static_folder="./staticFiles")
 
-camera = cv2.VideoCapture(1)
+camera = cv2.VideoCapture(0)
 
 emotions_with_smiley = {
     "happy": f"{emojize(':face_with_tears_of_joy:')} HAPPY",
@@ -43,14 +44,12 @@ def gen_frames():  # generate frame by frame from camera
             frame, face = get_face_from_frame(
                 cv2.flip(frame, 1), face_shape, class_cascade=class_cascade
             )
-            try:
+            with contextlib.suppress(Exception):
                 ret, buffer = cv2.imencode(".jpg", cv2.flip(frame, 1))
                 frame = buffer.tobytes()
                 yield (
                     b"--frame\r\n" b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n"
                 )
-            except Exception as e:
-                pass
 
 
 def magnify_emotion(emotion):
