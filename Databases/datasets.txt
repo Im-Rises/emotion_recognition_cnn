@@ -1,0 +1,21 @@
+To run the scripts, you need to put the FER-13 dataset here.
+
+CK+:
+https://www.kaggle.com/datasets/shawon10/ckplus
+
+FER-13:
+https://www.kaggle.com/datasets/msambare/fer2013
+https://www.kaggle.com/datasets/deadskull7/fer2013
+
+FERPlus :
+https://github.com/microsoft/FERPlus
+
+
+|----------------------------------------INSTRUCTIONS----------------------------------------|
+
+To use FERPlus, you need to :
+- Extract the FER-2013 dataset in a FER-2013 folder
+- Extract the FER-2013 dataset csv file in a FER-2013 folder
+- Extract the FERPlus github project in e folder named FERPlus
+- Start the 'remake_dataset.py' script with python
+The FERPlus dataset will be concatened inside the FER-2013 dataset.

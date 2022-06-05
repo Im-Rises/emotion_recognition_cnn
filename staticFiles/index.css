@@ -1,0 +1,32 @@
+.container{
+    display: inline-flex;
+    width: 90%;
+    margin-left:5%;
+    margin-right:5%;
+}
+html{
+    background-color:#161a1b;
+}
+
+.left{
+    float: left;
+    background-color: lightgray;
+    width:30%;
+    padding:4%;
+    font-size:220%;
+}
+.right{
+    border:none;
+    float: right;
+    width:70%;
+    text-align: center;
+}
+.right img {
+    width:100%;
+}
+
+h1{
+    text-align: center;
+    color:white;
+}
+

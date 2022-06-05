@@ -1,6 +1,14 @@
 # emotion_recognition_cnn
 
+<p align="center">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="pythonLogo" style="height:50px">
+    <img src="https://user-images.githubusercontent.com/59691442/169644815-7c59a948-09a4-4cd5-9a7d-d06d5dcd3ce1.svg" alt="tensorflowLogo" style="height:50px;">
+    <img src="https://user-images.githubusercontent.com/59691442/169644811-109bf300-c795-44c4-8bab-f6900f97c422.png" alt="kerasLogo" style="height:50px;">
+</p>
+
 ## Description
+
+### Expression recognition
 
 Deep Learning Project made in python for the recognition of emotion of a person.
 
@@ -8,6 +16,7 @@ Our goal is to obtein a minimum 90% accuracy on emotion recognition from any pic
 The app need to be able to analyse facial expression dicretly by analysing one image or by analysing frame by frame a video.  
 Finding all visbiles faces and give the current emotion of the person base on the six main facial expressions :
 
+- Neutral/Normal
 - Sadness
 - Happiness
 - Fear
@@ -19,34 +28,78 @@ The app is using the CNN (Convolutional neural network) to analyse the emotion o
 It will learn from different databases that contains several images of persons showing one of the six main emotion.
 The AI learn from this database by analysing each image, once done our model is able to analyse faces images out of the database.
 
-## Features
+### Features
 
-- Analyse images/videos and foud every faces.
-- Display emotion of a person based on facial expression.
+The app features :
 
-## Report
+- UI
+- Handle images and camera video
+- Multiple face detection and emotion analysis
+
+### Report
 
 The report is written in french. No other languages are available.  
 [Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
 
-## Documentations
+## Screenshots and videos
 
-<https://www.youtube.com/watch?v=u7obuspdQu4>  
-<https://www.datacorner.fr/reco-faciale-opencv/>  
+### Images
+
+Placeholder
+
+### Videos
+
+Placeholder
 
 ## Installation
 
-### CUDA and co installation
+### Quickstart
+
+Firstly you need to install python. I recommand you the python 3.6-3.8.
+
+If you just want to start the UI app, then just follow the `1. Python, Tensorflow, Keras` instructions just below.
+
+In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.  
+
+main.py : start the web IHM (you need a camera).
+
+prediction.py : set of functions used to handle opencv, models, etc... (mostly used by main.py)
+
+emotion_recognition/Models/training.py : train the model/architecture selected when starting the script.
+
+emotion_recognition/Models/common_functions.py : set of functions used by the training.py script
+
+### 1. Python, Tensorflow, Keras, OpenCV
+
+To use the program, you need to install python first (version 3.8 advised).
+<https://www.python.org>
+
+You can than install the required python packages. They are all listed in the requiremetns.txt file.
+To install them all directy, type the following command:
+
+```terminal
+pip install -r requirements.txt
+```
+
+With all the packages installed you'll be able to start the main.py file at the root of the project, it will start the IHM from there you can input an image or use a camera to analysis your emotions.
+
+### 2. CUDA and cuDNN installation
 
 Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
 The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
 
-Check compatible version with your tensorflow :  
-<https://www.tensorflow.org/install/source#gpu>  
-<https://www.tensorflow.org/install/source_windows>  
+While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with your version of CUDA, cudNN etc... check the following website.  
 
-Visual Studio :  
-<https://visualstudio.microsoft.com/fr/downloads/>
+<https://www.tensorflow.org/install/source#gpu>
+
+#### Windows
+
+Follow this tutorial from Tensorflow :  
+<https://www.tensorflow.org/install/source_windows#install_gpu_support_optional>
+
+Visual Studio or redistribuable :  
+<https://visualstudio.microsoft.com/fr/downloads/>  
+<https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170>
 
 CUDA :  
 <https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/>  
@@ -57,28 +110,31 @@ cuDNN :
 Tensorflow :  
 <https://www.tensorflow.org/install/gpu>
 
-### Version of libs used
+Follow this video steps if you have difficulties <https://www.youtube.com/watch?v=hHWkvEcDBO0&list=LL>.  
+If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by using Google Collab.
+<https://colab.research.google.com>
 
-- Visual Studio 2022
-- CUDA 11.2
-- cuDNN 8.1
-- tensorflow_gpu-2.6.0
-- keras 2.6
+Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
+You can then use start the python console script in emotion_recognition/Models/training.py.
 
-!!! Tensorflow install keras 2.7 or higher, make sure to reinstall keras 2.6 !!!
+#### Linux
 
-## Databases
+Follow this tutorial from Tensorflow :  
+<https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
 
-[Google facial expression comparison dataset](https://research.google/tools/datasets/google-facial-expression/)  
-[AffectNet-Sample](https://www.kaggle.com/mouadriali/affectnetsample)  
-[CKPLUS](https://www.kaggle.com/shawon10/ckplus)  
-[FER-2013](https://www.kaggle.com/msambare/fer2013)  
+Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
+You can then use start the python console script in emotion_recognition/Models/training.py.
 
-## Architectures
+### 3. Download the FER-13 database
 
-[Resnet](https://www.kaggle.com/datasets/keras/resnet50/code?resource=download)  
+The FER-13 dataset can be download below.
+[FER-2013](https://www.kaggle.com/msambare/fer2013)
 
-## Collaborateurs
+Once downloaded extract it and put here in the Database folder.
+
+## Contributors
+
+[![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/emotion_recognition_cnn)](https://github.com/Im-Rises/emotion_recognition_cnn/graphs/contributors)
 
 Quentin MOREL :
 
@@ -94,3 +150,44 @@ Yohan COHEN-SOLAL :
 
 - @YohanCohen-Solal  
 - <https://github.com/YohanCohen-Solal>
+
+## Databases
+
+[CKPLUS](https://www.kaggle.com/shawon10/ckplus)  
+[FER-2013](https://www.kaggle.com/msambare/fer2013)  
+[FERPLUS](https://github.com/microsoft/FERPlus)
+
+## Libraries
+
+Python :  
+<https://www.python.org>
+
+Tensorflow/Keras :  
+<https://www.tensorflow.org>
+
+OpenCV :  
+<https://www.datacorner.fr/reco-faciale-opencv/>
+<https://www.datacorner.fr/reco-faciale-opencv-2/>
+
+Flask :  
+<https://flask.palletsprojects.com/en/2.1.x/>
+
+## Documentations
+
+CNN, ANN, RNN presentation :  
+<https://www.youtube.com/watch?v=u7obuspdQu4>
+
+How to elaborate a CNN :  
+<https://www.analyticsvidhya.com/blog/2021/11/facial-emotion-detection-using-cnn/>  
+<https://machinelearningmastery.com/how-to-develop-a-cnn-from-scratch-for-cifar-10-photo-classification/>  
+
+Transfert learning :  
+<https://www.datacorner.fr/vgg-transfer-learning/>
+
+FERPLUS :  
+@inproceedings{BarsoumICMI2016,
+    title={Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
+    author={Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
+    booktitle={ACM International Conference on Multimodal Interaction (ICMI)},
+    year={2016}
+}
