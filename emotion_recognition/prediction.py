@@ -6,6 +6,14 @@ from PIL import Image
 from keras.backend import expand_dims
 from keras.models import load_model, Model
 from numpy import ndarray
+from keras.applications.resnet import ResNet50
+from emotion_recognition.Models.common_functions import (
+    create_model,
+    get_data,
+    fit,
+    evaluation_model,
+    saveModel,
+)
 
 emotions = {
     0: "angry",
@@ -94,7 +102,25 @@ def camera_modified(face_shape: tuple, model: Model, class_cascade):
 if __name__ == "__main__":
     # below it's just an example of how to use this file
     face_shape = (80, 80)
-    model = load_model("./Models/trained_models/resnet50")
+
+    #
+    # ## Load model
+    # model = load_model("./Models/trained_models/resnet50_ferplus")
+
+    ## Load weights
+    parameters = {
+        "shape": [80, 80],
+        "nbr_classes": 7,
+        "batch_size": 8,
+        "epochs": 50,
+        "number_of_last_layers_trainable": 10,
+        "learning_rate": 0.001,
+        "nesterov": True,
+        "momentum": 0.9,
+    }
+    model = create_model(architecture=ResNet50, parameters=parameters)
+    model.load_weights("Models/trained_models/resnet50_ferplus.h5")
+
     class_cascade = cv2.CascadeClassifier("ClassifierForOpenCV/frontalface_default.xml")
     for frame, emotion in camera_modified(
         face_shape, model, class_cascade=class_cascade
