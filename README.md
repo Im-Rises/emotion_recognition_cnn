@@ -12,8 +12,8 @@ Deep Learning AI Emotion recognition made in python with Tensorflow/Keras.
 
 ## Expression recognition
 
-The app need to be able to analyse facial expression dicretly by analysing one image or by analysing frame by frame a video.  
-Finding all visibles faces and show the current emotion state of the person base on the 7 main facial expressions :
+The app is able to analyse facial expressions directly by analysing one image or by analysing frame by frame a video.  
+It finds a visible face on an image and shows the current emotion state of it based on the 7 main facial expressions :
 
 - Neutral/Normal
 - Sadness
@@ -24,7 +24,8 @@ Finding all visibles faces and show the current emotion state of the person base
 - Disgust
 
 The app is using the CNN (Convolutional neural network) with the ResNet50 Architecture via Transfer Learning.
-The AI is trained with the FER-2013 and FERPLUS datasets allowing it to understand how to analyse a person's emotion from a picture.
+The AI is trained with the FER-2013 and FERPLUS datasets allowing it to understand how to analyse a person's emotion 
+from a picture.
 
 ### Features
 
@@ -42,54 +43,58 @@ The app features :
     <img src="https://user-images.githubusercontent.com/59691442/172060174-c7550108-bac5-4bdf-9661-69f7c7c88e52.gif" alt="yohanVid"/>
 </p>
 
-<!-- 
-![quent](https://user-images.githubusercontent.com/59691442/172060165-98d48d66-48cc-4d62-9529-2137907c621b.gif)
-![clem](https://user-images.githubusercontent.com/59691442/172060168-c282b57d-6d77-4a51-b44b-4088768a8022.gif)
-![yoha](https://user-images.githubusercontent.com/59691442/172060174-c7550108-bac5-4bdf-9661-69f7c7c88e52.gif) 
--->
-
 ## Report and Jupyter Notebook
 
-A report is available, but it is only in french.
+A report is available, but it is only in French.
 
 [Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
 
-Thre is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project.
+There is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project which shows you an example of how 
+we trained our AI.
 
 ## Installation
 
 ### Quickstart
 
-Firstly you need to install python. I recommand you the python 3.6-3.8.
+Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to 
+version above of 3.9.
 
-If you just want to start the UI app, then just follow the `1. Python, Tensorflow, Keras` instructions just below.
+If you just want to start the UI app, then just follow the `1. Requirements` instructions just below.
 
-In the case you want to test the models and train them. I would advised you to follow the `1. Python, Tensorflow, Keras` instructions below and the second set of instructions `2. CUDA and cuDNN installation`. **You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.
+In the case you want to test the models and train them. We would advise you to follow the `1. Requirements` 
+instructions below and the second set of instructions `2. CUDA and cuDNN installation (only if you want to train your own AI)`. 
+**You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.
 
 Once everything is installed, go to part `3. Train a model and use it` to train a model and test it.
 
-### 1. Python, Tensorflow, Keras, OpenCV
+### 1. Requirements
 
 To use the program, you need to install python first (version 3.8 advised).
 <https://www.python.org>
 
-You can than install the required python packages. They are all listed in the requiremetns.txt file.
-To install them all directy, type the following command:
+You can then install the required python packages. They are all listed in the requirements.txt file.
+To directly install them all, type the following command:
 
 ```terminal
 pip install -r requirements.txt
 ```
 
-With all the packages installed you'll be able to start the `app.py` file at the root of the project, it will start the HIM. Once the HIM is started go in your browser to this address `http://127.0.0.1:3134` allow the localhost website to use your camera and have fun.
+With all the packages installed you'll be able to start the `app.py` file at the root of the project, 
+it will start the HIM shown in the readme. Once the HIM is started go in your browser to this address 
+`http://localhost:3134`, wait a minute to let the backend start, and have fun !
+
+N.B. you can run `app.py` by typing in the terminal the following command `flask run`.
 
 If you don't want to use your browser, you can use the python UI version in `emotion_recognition/prediction.py`.
+It works with open-cv and shows emotions directly in the terminal.
 
-### 2. CUDA and cuDNN installation
+### 2. CUDA and cuDNN installation (only if you want to train your own AI)
 
 Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
 The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
 
-While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with your version of CUDA, cudNN etc... check the following website.  
+While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with 
+your version of CUDA, cudNN etc... check the following website.  
 
 <https://www.tensorflow.org/install/source#gpu>
 
@@ -98,7 +103,7 @@ While programming we used different versions of tensorflow, CUDA etc... To know 
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source_windows#install_gpu_support_optional>
 
-Visual Studio or redistribuable :  
+Visual Studio or redistributable :  
 <https://visualstudio.microsoft.com/fr/downloads/>  
 <https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170>
 
@@ -115,20 +120,20 @@ Follow this video steps if you have difficulties <https://www.youtube.com/watch?
 If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by using Google Collab.
 <https://colab.research.google.com>
 
-Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
-You can then use start the python console script in emotion_recognition/Models/training.py.
+Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
+`3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
 #### Linux
 
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
 
-Once you have installed the ncessary packages, app, SDK, etc... You need to download the FER-13 dataset in the `3. Download the FER-13 database` section.  
-You can then use start the python console script in emotion_recognition/Models/training.py.
+Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
+`3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
 ### 3. Train a model and use it
 
-Once everything is installed you can start the training by starting the `training.py` script in emotion_recognition/Models/training.py.
+Once everything is installed you can run the script `emotion_recognition/Models/training.py`.
 There you can select which model you want to train by transfer learning between :
 
 1. resnet50
@@ -139,11 +144,20 @@ There you can select which model you want to train by transfer learning between 
 6. resnet50v2
 7. resnet101
 
-If you want to use another model for the UIs. Save your model when asked by the promped and change the load_weights/load_model model in the app.py or prediction.py.
+If you want to use another model for the UIs, save your model when asked by the script `training.py` (it happens at 
+the end of a training session). Then, you can change the model in `app.py` or `prediction.py`, in the 
+function `load_weights` or `load_model`. By default, all saved models are stored 
+in `emotion_recognition/Models/trained_models/` directory.
 
-You can also change the database on which you're training. By default the AI is set to be trained on FER-2013 dataset that you need to download first.
+the function `load_weights` works only with `.h5` files while `load_model` works by giving him the path to a directory 
+which contain a complete model.
 
-If you want to use FERPlus for better performences, you will need to download FERPLUS and FER-2013. Extract them in the databases folder next to the `datasets.txt` file as two folder FER-2013 (containting train, test folders and fer2013.csv) and FERPlus folder containing all the FERPlus's microsoft repository.
+You can also change the database on which you're training. By default, the AI is set to be trained on FER-2013 dataset 
+that you need to download first.
+
+If you want to use FERPlus for better performances, you will need to download FERPLUS and FER-2013. Extract them in the 
+databases' folder next to the `datasets.txt` file as two folder FER-2013 (containing train, test folders and fer2013.csv) 
+and FERPlus folder containing all the FERPlus's Microsoft repository.
 Last step is to start the `remake_dataset.py` that will concatenate all FERPlus images inside the FER-2013 folder.
 
 All datasets can be downloaded below!!!
