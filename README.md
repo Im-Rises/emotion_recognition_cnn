@@ -12,7 +12,6 @@ Deep Learning AI Emotion recognition made in python with Tensorflow/Keras.
 
 ### Expression recognition
 
-<img src="readme_files/demo1.gif"/>
 
 The app need to be able to analyse facial expression dicretly by analysing one image or by analysing frame by frame a video.  
 Finding all visibles faces and show the current emotion state of the person base on the 7 main facial expressions :
@@ -48,7 +47,8 @@ Thre is also a Jupyter Notebook named `demo.ipynb` at the root folder of the pro
 
 ### Images
 
-Placeholder
+<img src="readme_files/demo1.gif"/>
+
 
 ### Videos
 
