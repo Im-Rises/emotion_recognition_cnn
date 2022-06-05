@@ -155,6 +155,7 @@ Yohan COHEN-SOLAL :
 
 [CKPLUS](https://www.kaggle.com/shawon10/ckplus)  
 [FER-2013](https://www.kaggle.com/msambare/fer2013)  
+[FERPLUS](https://github.com/microsoft/FERPlus)
 
 ## Libraries
 
@@ -182,3 +183,11 @@ How to elaborate a CNN :
 
 Transfert learning :  
 <https://www.datacorner.fr/vgg-transfer-learning/>
+
+FERPLUS :  
+@inproceedings{BarsoumICMI2016,
+    title={Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
+    author={Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
+    booktitle={ACM International Conference on Multimodal Interaction (ICMI)},
+    year={2016}
+}

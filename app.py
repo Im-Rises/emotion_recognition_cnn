@@ -1,10 +1,17 @@
 import contextlib
 import cv2
 from flask import Flask, render_template, Response, request
-from keras.applications.resnet import ResNet50
 from keras.models import load_model
 from emoji import emojize
 from emotion_recognition.prediction import get_face_from_frame, get_emotions_from_face
+from keras.applications.resnet import ResNet50
+from emotion_recognition.Models.common_functions import (
+    create_model,
+    get_data,
+    fit,
+    evaluation_model,
+    saveModel,
+)
 
 switch, out, capture, rec_frame = (
     1,
@@ -14,8 +21,28 @@ switch, out, capture, rec_frame = (
 )
 
 face_shape = (80, 80)
-model = load_model("./emotion_recognition/Models/trained_models/resnet50")
-# model = ResNet50()
+
+
+# ## Load model
+# model = load_model("./emotion_recognition/Models/trained_models/resnet50_ferplus")
+
+## Load weights
+parameters = {
+    "shape": [80, 80],
+    "nbr_classes": 7,
+    "train_path": "../../databases/FER-2013/train/",
+    "test_path": "../../databases/FER-2013/test/",
+    "batch_size": 8,
+    "epochs": 50,
+    "number_of_last_layers_trainable": 10,
+    "learning_rate": 0.001,
+    "nesterov": True,
+    "momentum": 0.9,
+}
+model = create_model(architecture=ResNet50, parameters=parameters)
+model.load_weights("emotion_recognition/Models/trained_models/resnet50_ferplus.h5")
+
+
 class_cascade = cv2.CascadeClassifier(
     "./emotion_recognition/ClassifierForOpenCV/frontalface_default.xml"
 )
