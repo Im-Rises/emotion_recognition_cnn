@@ -10,8 +10,7 @@
 
 Deep Learning AI Emotion recognition made in python with Tensorflow/Keras.
 
-### Expression recognition
-
+## Expression recognition
 
 The app need to be able to analyse facial expression dicretly by analysing one image or by analysing frame by frame a video.  
 Finding all visibles faces and show the current emotion state of the person base on the 7 main facial expressions :
@@ -35,31 +34,27 @@ The app features :
 - Handle face detection
 - Analyse emotions of a person
 
-### Report and Jupyter Notebook
+## Videos
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/59691442/172060165-98d48d66-48cc-4d62-9529-2137907c621b.gif" alt="quentinVid"/>
+    <img src="https://user-images.githubusercontent.com/59691442/172060168-c282b57d-6d77-4a51-b44b-4088768a8022.gif" alt="clementVid"/>
+    <img src="https://user-images.githubusercontent.com/59691442/172060174-c7550108-bac5-4bdf-9661-69f7c7c88e52.gif" alt="yohanVid"/>
+</p>
+
+<!-- 
+![quent](https://user-images.githubusercontent.com/59691442/172060165-98d48d66-48cc-4d62-9529-2137907c621b.gif)
+![clem](https://user-images.githubusercontent.com/59691442/172060168-c282b57d-6d77-4a51-b44b-4088768a8022.gif)
+![yoha](https://user-images.githubusercontent.com/59691442/172060174-c7550108-bac5-4bdf-9661-69f7c7c88e52.gif) 
+-->
+
+## Report and Jupyter Notebook
 
 A report is available, but it is only in french.
 
 [Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
 
 Thre is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project.
-
-## Screenshots and videos
-
-
-![286223660_551249336409655_7926556513898643709_n](https://user-images.githubusercontent.com/59691442/172058060-70b46b46-e7bc-406e-b2dd-9ca39c2a56c9.gif)
-![demo1](https://user-images.githubusercontent.com/59691442/172058053-97dc46fd-b2f1-45e4-ae88-aa767220f8f0.gif)
-![demo_y](https://user-images.githubusercontent.com/73964103/172058958-237f4d06-041d-409e-8cb3-5a93a44a3604.gif)
-<!-- ### Images -->
-
-<!-- <img src="readme_files/demo1.gif"/> -->
-
-<!-- !
-
-### Videos
-
-Placeholder -->
-
----
 
 ## Installation
 
