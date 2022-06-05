@@ -45,14 +45,18 @@ Thre is also a Jupyter Notebook named `demo.ipynb` at the root folder of the pro
 
 ## Screenshots and videos
 
-### Images
 
-<img src="readme_files/demo1.gif"/>
+![286223660_551249336409655_7926556513898643709_n](https://user-images.githubusercontent.com/59691442/172058060-70b46b46-e7bc-406e-b2dd-9ca39c2a56c9.gif)
+![demo1](https://user-images.githubusercontent.com/59691442/172058053-97dc46fd-b2f1-45e4-ae88-aa767220f8f0.gif)
 
+<!-- ### Images -->
 
+<!-- <img src="readme_files/demo1.gif"/> -->
+
+<!-- 
 ### Videos
 
-Placeholder
+Placeholder -->
 
 ---
 
