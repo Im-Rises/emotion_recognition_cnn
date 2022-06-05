@@ -34,11 +34,13 @@ The app features :
 - Handle face detection
 - Analyse emotions of a person
 
-### Report
+### Report and Jupyter Notebook
 
 A report is available, but it is only in french.
 
 [Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
+
+Thre is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project.
 
 ## Screenshots and videos
 
