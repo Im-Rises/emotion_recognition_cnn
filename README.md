@@ -54,6 +54,14 @@ we trained our AI.
 
 ## Installation
 
+### Use online demo version
+
+Follow the link below if you want to try a version with the browser of our app.
+
+No installations or any libs to download and install.
+
+<https://im-rises.github.io/emotion-recognition-website/>
+
 ### Quickstart
 
 Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to 
@@ -178,8 +186,10 @@ Tensorflow/Keras :
 <https://www.tensorflow.org>
 
 OpenCV :  
-<https://www.datacorner.fr/reco-faciale-opencv/>
-<https://www.datacorner.fr/reco-faciale-opencv-2/>
+<https://opencv.org>
+
+OpenCV weights :  
+<https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml>
 
 Flask :  
 <https://flask.palletsprojects.com/en/2.1.x/>
@@ -195,6 +205,11 @@ How to elaborate a CNN :
 
 Transfert learning :  
 <https://www.datacorner.fr/vgg-transfer-learning/>
+
+OpenCV :  
+<https://www.datacorner.fr/reco-faciale-opencv/>  
+<https://www.datacorner.fr/reco-faciale-opencv-2/>  
+
 
 FERPLUS :  
 @inproceedings{BarsoumICMI2016,
