@@ -54,18 +54,29 @@ we trained our AI.
 
 ## Installation
 
-### Use online demo version
+There is two main version of the project. One you can test online by going to the `Quickstart Browser Version` and the other
+for your computer in section `Quickstart Computer Version`.
+
+If you juste want to test the app, go on to the browser version, you need nothing except a browser to test it.
+
+The other version can be used if you want to test on your computer, train/change the model etc...
+
+### Quickstart Browser Version
 
 Follow the link below if you want to try a version with the browser of our app.
 
 No installations or any libs to download and install.
 
+Repository :  
+<https://github.com/Im-Rises/emotion-recognition-website>
+
+Website emotion_recognition version :  
 <https://im-rises.github.io/emotion-recognition-website/>
 
-### Quickstart
+### Quickstart Computer Version
 
 Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to 
-version above of 3.9.
+version above 3.9.
 
 If you just want to start the UI app, then just follow the `1. Requirements` instructions just below.
 
@@ -75,7 +86,7 @@ instructions below and the second set of instructions `2. CUDA and cuDNN install
 
 Once everything is installed, go to part `3. Train a model and use it` to train a model and test it.
 
-### 1. Requirements
+#### 1. Requirements
 
 To use the program, you need to install python first (version 3.8 advised).
 <https://www.python.org>
@@ -96,7 +107,7 @@ N.B. you can run `app.py` by typing in the terminal the following command `flask
 If you don't want to use your browser, you can use the python UI version in `emotion_recognition/prediction.py`.
 It works with open-cv and shows emotions directly in the terminal.
 
-### 2. CUDA and cuDNN installation (only if you want to train your own AI)
+#### 2. CUDA and cuDNN installation (only if you want to train your own AI)
 
 Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
 The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
@@ -106,7 +117,7 @@ your version of CUDA, cudNN etc... check the following website.
 
 <https://www.tensorflow.org/install/source#gpu>
 
-#### Windows
+##### Windows
 
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source_windows#install_gpu_support_optional>
@@ -131,7 +142,7 @@ If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by
 Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
 `3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
-#### Linux
+##### Linux
 
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
@@ -139,7 +150,7 @@ Follow this tutorial from Tensorflow :
 Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
 `3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
-### 3. Train a model and use it
+#### 3. Train a model and use it
 
 Once everything is installed you can run the script `emotion_recognition/Models/training.py`.
 There you can select which model you want to train by transfer learning between :
