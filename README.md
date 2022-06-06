@@ -207,8 +207,8 @@ Transfert learning :
 <https://www.datacorner.fr/vgg-transfer-learning/>
 
 OpenCV :  
-<https://www.datacorner.fr/reco-faciale-opencv/>
-<https://www.datacorner.fr/reco-faciale-opencv-2/>
+<https://www.datacorner.fr/reco-faciale-opencv/>  
+<https://www.datacorner.fr/reco-faciale-opencv-2/>  
 
 
 FERPLUS :  
