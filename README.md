@@ -178,8 +178,7 @@ Tensorflow/Keras :
 <https://www.tensorflow.org>
 
 OpenCV :  
-<https://www.datacorner.fr/reco-faciale-opencv/>
-<https://www.datacorner.fr/reco-faciale-opencv-2/>
+<https://opencv.org>
 
 OpenCV weights :  
 <https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml>
@@ -198,6 +197,11 @@ How to elaborate a CNN :
 
 Transfert learning :  
 <https://www.datacorner.fr/vgg-transfer-learning/>
+
+OpenCV :  
+<https://www.datacorner.fr/reco-faciale-opencv/>
+<https://www.datacorner.fr/reco-faciale-opencv-2/>
+
 
 FERPLUS :  
 @inproceedings{BarsoumICMI2016,
