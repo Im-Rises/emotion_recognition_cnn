@@ -54,6 +54,14 @@ we trained our AI.
 
 ## Installation
 
+### Use online demo version
+
+Follow the link below if you want to try a version with the browser of our app.
+
+No installations or any libs to download and install.
+
+<https://im-rises.github.io/emotion-recognition-website/>
+
 ### Quickstart
 
 Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to 
