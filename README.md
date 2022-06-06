@@ -181,6 +181,9 @@ OpenCV :
 <https://www.datacorner.fr/reco-faciale-opencv/>
 <https://www.datacorner.fr/reco-faciale-opencv-2/>
 
+OpenCV weights :  
+<https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml>
+
 Flask :  
 <https://flask.palletsprojects.com/en/2.1.x/>
 
