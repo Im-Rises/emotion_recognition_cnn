@@ -47,7 +47,7 @@ The app features :
 
 A report is available, but it is only in French.
 
-[Pdf Report Link](https://github.com/Im-Rises/emotion_recognition_cnn/tree/main/report/reconnaissance_emotions_faciales_clement_reiffers_quentin_morel_yohan_cohen-solal.pdf)
+[Pdf Report Link](./report/reconnaissance_emotions_faciales_clement_reiffers_quentin_morel_yohan_cohen-solal.pdf)
 
 There is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project which shows you an example of how 
 we trained our AI.
