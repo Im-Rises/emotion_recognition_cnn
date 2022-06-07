@@ -47,25 +47,36 @@ The app features :
 
 A report is available, but it is only in French.
 
-[Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
+[Pdf Report Link](./report/reconnaissance_emotions_faciales_clement_reiffers_quentin_morel_yohan_cohen-solal.pdf)
 
 There is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project which shows you an example of how 
 we trained our AI.
 
 ## Installation
 
-### Use online demo version
+There is two main version of the project. One you can test online by going to the `Quickstart Browser Version` and the other
+for your computer in section `Quickstart Computer Version`.
+
+If you juste want to test the app, go on to the browser version, you need nothing except a browser to test it.
+
+The other version can be used if you want to test on your computer, train/change the model etc...
+
+### Quickstart Browser Version
 
 Follow the link below if you want to try a version with the browser of our app.
 
 No installations or any libs to download and install.
 
-<https://im-rises.github.io/emotion-recognition-website/>
+Repository :  
+<https://github.com/Im-Rises/emotion-recognition-website>
 
-### Quickstart
+Website emotion_recognition version :  
+<https://im-rises.github.io/emotion-recognition-website-react/>
+
+### Quickstart Computer Version
 
 Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to 
-version above of 3.9.
+version above 3.9.
 
 If you just want to start the UI app, then just follow the `1. Requirements` instructions just below.
 
@@ -75,7 +86,7 @@ instructions below and the second set of instructions `2. CUDA and cuDNN install
 
 Once everything is installed, go to part `3. Train a model and use it` to train a model and test it.
 
-### 1. Requirements
+#### 1. Requirements
 
 To use the program, you need to install python first (version 3.8 advised).
 <https://www.python.org>
@@ -96,7 +107,7 @@ N.B. you can run `app.py` by typing in the terminal the following command `flask
 If you don't want to use your browser, you can use the python UI version in `emotion_recognition/prediction.py`.
 It works with open-cv and shows emotions directly in the terminal.
 
-### 2. CUDA and cuDNN installation (only if you want to train your own AI)
+#### 2. CUDA and cuDNN installation (only if you want to train your own AI)
 
 Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
 The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
@@ -106,7 +117,7 @@ your version of CUDA, cudNN etc... check the following website.
 
 <https://www.tensorflow.org/install/source#gpu>
 
-#### Windows
+##### Windows
 
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source_windows#install_gpu_support_optional>
@@ -131,7 +142,7 @@ If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by
 Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
 `3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
-#### Linux
+##### Linux
 
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
@@ -139,7 +150,7 @@ Follow this tutorial from Tensorflow :
 Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
 `3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
-### 3. Train a model and use it
+#### 3. Train a model and use it
 
 Once everything is installed you can run the script `emotion_recognition/Models/training.py`.
 There you can select which model you want to train by transfer learning between :
@@ -193,6 +204,9 @@ OpenCV weights :
 
 Flask :  
 <https://flask.palletsprojects.com/en/2.1.x/>
+
+emojize :  
+<https://pypi.org/project/emoji/>
 
 ## Documentations
 
