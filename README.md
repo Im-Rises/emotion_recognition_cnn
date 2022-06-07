@@ -47,7 +47,7 @@ The app features :
 
 A report is available, but it is only in French.
 
-[Word document link](https://esmefr-my.sharepoint.com/:w:/g/personal/clement_reiffers_esme_fr/EQLW0WK_l6hHrJRBIOaRYeQBrQLS2fZTjtCm68l-NXpW_g?e=4%3ARP8DM1&at=9&CID=D924432C-3B7E-4D12-B1AF-5F9A98207FC7&wdLOR=c46E7383C-126E-40A3-BA99-964061BF8370)
+[Pdf Report Link](https://github.com/Im-Rises/emotion_recognition_cnn/tree/main/report/reconnaissance_emotions_faciales_clement_reiffers_quentin_morel_yohan_cohen-solal.pdf)
 
 There is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project which shows you an example of how 
 we trained our AI.
@@ -71,7 +71,7 @@ Repository :
 <https://github.com/Im-Rises/emotion-recognition-website>
 
 Website emotion_recognition version :  
-<https://im-rises.github.io/emotion-recognition-website/>
+<https://im-rises.github.io/emotion-recognition-website-react/>
 
 ### Quickstart Computer Version
 
@@ -204,6 +204,9 @@ OpenCV weights :
 
 Flask :  
 <https://flask.palletsprojects.com/en/2.1.x/>
+
+emojize :  
+<https://pypi.org/project/emoji/>
 
 ## Documentations
 
