@@ -71,7 +71,7 @@ Repository :
 <https://github.com/Im-Rises/emotion-recognition-website>
 
 Website emotion_recognition version :  
-<https://im-rises.github.io/emotion-recognition-website-react/>
+<https://im-rises.github.io/emotion-recognition-website/>
 
 ### Quickstart Computer Version
 
