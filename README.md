@@ -9,7 +9,7 @@
 
 ## Description
 
-Deep Learning AI Emotion recognition made in python with Tensorflow/Keras.
+Deep Learning AI Emotion recognition made in python with Tensorflow/Keras and OpenCV.
 
 ## Expression recognition
 
@@ -25,8 +25,11 @@ It finds a visible face on an image and shows the current emotion state of it ba
 - Disgust
 
 The app is using the CNN (Convolutional neural network) with the ResNet50 Architecture via Transfer Learning.
-The AI is trained with the FER-2013 and FERPLUS datasets allowing it to understand how to analyse a person's emotion 
+The AI is trained with the FER-2013 and FERPLUS datasets allowing it to understand how to analyse a person's emotion
 from a picture.
+
+The project is focused on the emotion recognition from face images. 
+To find faces in a video, we use OpenCV that allow us to transform face from a video to images that we can predict its emotion.
 
 ### Features
 
@@ -50,12 +53,13 @@ A report is available, but it is only in French.
 
 [Pdf Report Link](./report/reconnaissance_emotions_faciales_clement_reiffers_quentin_morel_yohan_cohen-solal.pdf)
 
-There is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project which shows you an example of how 
+There is also a Jupyter Notebook named `demo.ipynb` at the root folder of the project which shows you an example of how
 we trained our AI.
 
 ## Installation
 
-There is two main version of the project. One you can test online by going to the `Quickstart Browser Version` and the other
+There is two main version of the project. One you can test online by going to the `Quickstart Browser Version` and the
+other
 for your computer in section `Quickstart Computer Version`.
 
 If you juste want to test the app, go on to the browser version, you need nothing except a browser to test it.
@@ -76,13 +80,14 @@ Website emotion_recognition version :
 
 ### Quickstart Computer Version
 
-Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to 
+Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to
 version above 3.9.
 
 If you just want to start the UI app, then just follow the `1. Requirements` instructions just below.
 
-In the case you want to test the models and train them. We would advise you to follow the `1. Requirements` 
-instructions below and the second set of instructions `2. CUDA and cuDNN installation (only if you want to train your own AI)`. 
+In the case you want to test the models and train them. We would advise you to follow the `1. Requirements`
+instructions below and the second set of
+instructions `2. CUDA and cuDNN installation (only if you want to train your own AI)`.
 **You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.
 
 Once everything is installed, go to part `3. Train a model and use it` to train a model and test it.
@@ -99,8 +104,8 @@ To directly install them all, type the following command:
 pip install -r requirements.txt
 ```
 
-With all the packages installed you'll be able to start the `app.py` file at the root of the project, 
-it will start the HIM shown in the readme. Once the HIM is started go in your browser to this address 
+With all the packages installed you'll be able to start the `app.py` file at the root of the project,
+it will start the HIM shown in the readme. Once the HIM is started go in your browser to this address
 `http://localhost:3134`, wait a minute to let the backend start, and have fun !
 
 N.B. you can run `app.py` by typing in the terminal the following command `flask run`.
@@ -111,10 +116,10 @@ It works with open-cv and shows emotions directly in the terminal.
 #### 2. CUDA and cuDNN installation (only if you want to train your own AI)
 
 Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
-The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.  
+The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.
 
-While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with 
-your version of CUDA, cudNN etc... check the following website.  
+While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with
+your version of CUDA, cudNN etc... check the following website.
 
 <https://www.tensorflow.org/install/source#gpu>
 
@@ -128,7 +133,7 @@ Visual Studio or redistributable :
 <https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170>
 
 CUDA :  
-<https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/>  
+<https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/>
 
 cuDNN :  
 <https://developer.nvidia.com/cudnn>
@@ -140,7 +145,7 @@ Follow this video steps if you have difficulties <https://www.youtube.com/watch?
 If you are unable to install CUDA and CuDNN, I would advise you to use a TPU, by using Google Collab.
 <https://colab.research.google.com>
 
-Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
+Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the
 `3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
 ##### Linux
@@ -148,7 +153,7 @@ Once you have installed the necessary packages, app, SDK, etc... You need to dow
 Follow this tutorial from Tensorflow :  
 <https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
 
-Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the 
+Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the
 `3. Download the FER-13 database` section, then you'll be able to train your own AI.
 
 #### 3. Train a model and use it
@@ -164,19 +169,20 @@ There you can select which model you want to train by transfer learning between 
 6. resnet50v2
 7. resnet101
 
-If you want to use another model for the UIs, save your model when asked by the script `training.py` (it happens at 
-the end of a training session). Then, you can change the model in `app.py` or `prediction.py`, in the 
-function `load_weights` or `load_model`. By default, all saved models are stored 
+If you want to use another model for the UIs, save your model when asked by the script `training.py` (it happens at
+the end of a training session). Then, you can change the model in `app.py` or `prediction.py`, in the
+function `load_weights` or `load_model`. By default, all saved models are stored
 in `emotion_recognition/Models/trained_models/` directory.
 
-the function `load_weights` works only with `.h5` files while `load_model` works by giving him the path to a directory 
+the function `load_weights` works only with `.h5` files while `load_model` works by giving him the path to a directory
 which contain a complete model.
 
-You can also change the database on which you're training. By default, the AI is set to be trained on FER-2013 dataset 
+You can also change the database on which you're training. By default, the AI is set to be trained on FER-2013 dataset
 that you need to download first.
 
-If you want to use FERPlus for better performances, you will need to download FERPLUS and FER-2013. Extract them in the 
-databases' folder next to the `datasets.txt` file as two folder FER-2013 (containing train, test folders and fer2013.csv) 
+If you want to use FERPlus for better performances, you will need to download FERPLUS and FER-2013. Extract them in the
+databases' folder next to the `datasets.txt` file as two folder FER-2013 (containing train, test folders and
+fer2013.csv)
 and FERPlus folder containing all the FERPlus's Microsoft repository.
 Last step is to start the `remake_dataset.py` that will concatenate all FERPlus images inside the FER-2013 folder.
 
@@ -216,22 +222,21 @@ CNN, ANN, RNN presentation :
 
 How to elaborate a CNN :  
 <https://www.analyticsvidhya.com/blog/2021/11/facial-emotion-detection-using-cnn/>  
-<https://machinelearningmastery.com/how-to-develop-a-cnn-from-scratch-for-cifar-10-photo-classification/>  
+<https://machinelearningmastery.com/how-to-develop-a-cnn-from-scratch-for-cifar-10-photo-classification/>
 
 Transfert learning :  
 <https://www.datacorner.fr/vgg-transfer-learning/>
 
 OpenCV :  
 <https://www.datacorner.fr/reco-faciale-opencv/>  
-<https://www.datacorner.fr/reco-faciale-opencv-2/>  
-
+<https://www.datacorner.fr/reco-faciale-opencv-2/>
 
 FERPLUS :  
 @inproceedings{BarsoumICMI2016,
-    title={Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
-    author={Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
-    booktitle={ACM International Conference on Multimodal Interaction (ICMI)},
-    year={2016}
+title={Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
+author={Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
+booktitle={ACM International Conference on Multimodal Interaction (ICMI)},
+year={2016}
 }
 
 ## Contributors
@@ -241,14 +246,14 @@ Quentin MOREL :
 - @Im-Rises
 - <https://github.com/Im-Rises>
 
-Clément REIFFERS :  
+Clément REIFFERS :
 
-- @clementreiffers  
+- @clementreiffers
 - <https://github.com/clementreiffers>
 
 Yohan COHEN-SOLAL :
 
-- @YohanCohen-Solal  
+- @YohanCohen-Solal
 - <https://github.com/YohanCohen-Solal>
 
 [![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/emotion_recognition_cnn)](https://github.com/Im-Rises/emotion_recognition_cnn/graphs/contributors)
