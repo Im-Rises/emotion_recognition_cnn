@@ -28,8 +28,10 @@ The app is using the CNN (Convolutional neural network) with the ResNet50 Archit
 The AI is trained with the FER-2013 and FERPLUS datasets allowing it to understand how to analyse a person's emotion
 from a picture.
 
-The project is focused on the emotion recognition from face images. 
-To find faces in a video, we use OpenCV that allow us to transform face in a video to croped images allowing us to predict the emotions.
+> **Note**
+> The project is focused on the emotion recognition from face images.
+> To find faces in a video, we use OpenCV that allow us to transform face in a video to croped images allowing us to
+> predict the emotions.
 
 ### Features
 
@@ -58,11 +60,11 @@ we trained our AI.
 
 ## Installation
 
-There is two main version of the project. One you can test online by going to the `Quickstart Browser Version` and the
-other
-for your computer in section `Quickstart Computer Version`.
+There is two versions of the project. One which you can test online by going to the `Quickstart Browser Version` section
+and the other for your computer in section `Quickstart Computer Version`.
 
-If you juste want to test the app, go on to the browser version, you need nothing except a browser to test it.
+> **Note**
+> If you juste want to test the app, go on to the browser version, you need nothing except a browser to test it.
 
 The other version can be used if you want to test on your computer, train/change the model etc...
 
@@ -70,7 +72,7 @@ The other version can be used if you want to test on your computer, train/change
 
 Follow the link below if you want to try a version with the browser of our app.
 
-No installations or any libs to download and install.
+No installations nor any libs to download and install.
 
 Repository :  
 <https://github.com/Im-Rises/emotion-recognition-website>
@@ -108,19 +110,30 @@ With all the packages installed you'll be able to start the `app.py` file at the
 it will start the HIM shown in the readme. Once the HIM is started go in your browser to this address
 `http://localhost:3134`, wait a minute to let the backend start, and have fun !
 
-N.B. you can run `app.py` by typing in the terminal the following command `flask run`.
+N.B. you can run `app.py` by typing in the terminal the following commands :
 
-If you don't want to use your browser, you can use the python UI version in `emotion_recognition/prediction.py`.
+```bash
+flask run
+```
+
+or
+
+```bash
+py app.py
+```
+
+If you don't want to use the browser UI version, you can use the python UI version
+in `emotion_recognition/prediction.py`.
 It works with open-cv and shows emotions directly in the terminal.
 
-#### 2. CUDA and cuDNN installation (only if you want to train your own AI)
+#### 2. CUDA and cuDNN installation (only if you want to train your own model)
 
 Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
-The app is asking a lot of processing, so to speed it we use the GPU instead of the CPU.
+The app needs a lot of processing, so to speed it we use the GPU instead of the CPU.
 
-While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with
-your version of CUDA, cudNN etc... check the following website.
-
+> **Warning**
+> While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with
+> your version of CUDA, cudNN etc... check the following website.  
 <https://www.tensorflow.org/install/source#gpu>
 
 ##### Windows
@@ -154,7 +167,7 @@ Follow this tutorial from Tensorflow :
 <https://www.tensorflow.org/install/source#install_gpu_support_optional_linux_only>
 
 Once you have installed the necessary packages, app, SDK, etc... You need to download the FER-13 dataset in the
-`3. Download the FER-13 database` section, then you'll be able to train your own AI.
+`3. Train a model and use it` section, then you'll be able to train your own AI.
 
 #### 3. Train a model and use it
 
@@ -174,7 +187,7 @@ the end of a training session). Then, you can change the model in `app.py` or `p
 function `load_weights` or `load_model`. By default, all saved models are stored
 in `emotion_recognition/Models/trained_models/` directory.
 
-the function `load_weights` works only with `.h5` files while `load_model` works by giving him the path to a directory
+The function `load_weights` works only with `.h5` files while `load_model` works by giving him the path to a directory
 which contain a complete model.
 
 You can also change the database on which you're training. By default, the AI is set to be trained on FER-2013 dataset
@@ -186,7 +199,8 @@ fer2013.csv)
 and FERPlus folder containing all the FERPlus's Microsoft repository.
 Last step is to start the `remake_dataset.py` that will concatenate all FERPlus images inside the FER-2013 folder.
 
-All datasets can be downloaded below!!!
+> **Note**
+> All datasets can be downloaded below!!!
 
 ---
 
@@ -231,13 +245,20 @@ OpenCV :
 <https://www.datacorner.fr/reco-faciale-opencv/>  
 <https://www.datacorner.fr/reco-faciale-opencv-2/>
 
+## Bibliography
+
 FERPLUS :  
+Barsoum, E., Zhang, C., Canton Ferrer, C., & Zhang, Z. (2016). Training Deep Networks for Facial Expression Recognition
+with Crowd-Sourced Label Distribution. In ACM International Conference on Multimodal Interaction (ICMI).
+
+<!--
 @inproceedings{BarsoumICMI2016,
 title={Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
 author={Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
 booktitle={ACM International Conference on Multimodal Interaction (ICMI)},
 year={2016}
 }
+-->
 
 ## Contributors
 
