@@ -29,8 +29,9 @@ The AI is trained with the FER-2013 and FERPLUS datasets allowing it to understa
 from a picture.
 
 > **Note**
-> The project is focused on the emotion recognition from face images. 
-To find faces in a video, we use OpenCV that allow us to transform face in a video to croped images allowing us to predict the emotions.
+> The project is focused on the emotion recognition from face images.
+> To find faces in a video, we use OpenCV that allow us to transform face in a video to croped images allowing us to
+> predict the emotions.
 
 ### Features
 
@@ -59,9 +60,8 @@ we trained our AI.
 
 ## Installation
 
-There is two main version of the project. One you can test online by going to the `Quickstart Browser Version` and the
-other
-for your computer in section `Quickstart Computer Version`.
+There is two versions of the project. One which you can test online by going to the `Quickstart Browser Version` section
+and the other for your computer in section `Quickstart Computer Version`.
 
 > **Note**
 > If you juste want to test the app, go on to the browser version, you need nothing except a browser to test it.
@@ -72,7 +72,7 @@ The other version can be used if you want to test on your computer, train/change
 
 Follow the link below if you want to try a version with the browser of our app.
 
-No installations or any libs to download and install.
+No installations nor any libs to download and install.
 
 Repository :  
 <https://github.com/Im-Rises/emotion-recognition-website>
@@ -116,13 +116,14 @@ N.B. you can run `app.py` by typing in the terminal the following commands :
 flask run
 ```
 
-or 
+or
 
 ```bash
 py app.py
 ```
 
-If you don't want to use the browser UI version, you can use the python UI version in `emotion_recognition/prediction.py`.
+If you don't want to use the browser UI version, you can use the python UI version
+in `emotion_recognition/prediction.py`.
 It works with open-cv and shows emotions directly in the terminal.
 
 #### 2. CUDA and cuDNN installation (only if you want to train your own model)
@@ -132,7 +133,7 @@ The app needs a lot of processing, so to speed it we use the GPU instead of the 
 
 > **Warning**
 > While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with
-your version of CUDA, cudNN etc... check the following website.  
+> your version of CUDA, cudNN etc... check the following website.  
 <https://www.tensorflow.org/install/source#gpu>
 
 ##### Windows
@@ -244,13 +245,20 @@ OpenCV :
 <https://www.datacorner.fr/reco-faciale-opencv/>  
 <https://www.datacorner.fr/reco-faciale-opencv-2/>
 
+## Bibliography
+
 FERPLUS :  
+Barsoum, E., Zhang, C., Canton Ferrer, C., & Zhang, Z. (2016). Training Deep Networks for Facial Expression Recognition
+with Crowd-Sourced Label Distribution. In ACM International Conference on Multimodal Interaction (ICMI).
+
+<!--
 @inproceedings{BarsoumICMI2016,
 title={Training Deep Networks for Facial Expression Recognition with Crowd-Sourced Label Distribution},
 author={Barsoum, Emad and Zhang, Cha and Canton Ferrer, Cristian and Zhang, Zhengyou},
 booktitle={ACM International Conference on Multimodal Interaction (ICMI)},
 year={2016}
 }
+-->
 
 ## Contributors
 
