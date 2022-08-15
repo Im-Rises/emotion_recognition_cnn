@@ -277,4 +277,4 @@ Yohan COHEN-SOLAL :
 - @YohanCohen-Solal
 - <https://github.com/YohanCohen-Solal>
 
-[![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/emotion_recognition_cnn)](https://github.com/Im-Rises/emotion_recognition_cnn/graphs/contributors)
+[![GitHub contributors](https://contrib.rocks/image?repo=Im-Rises/emotion_recognition_cnn&max=3)](https://github.com/Im-Rises/emotion_recognition_cnn/graphs/contributors)
