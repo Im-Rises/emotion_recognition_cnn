@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='emotion_recognition_cnn',
     version='1.0',
-    packages=['tensorflow==2.6.0', 'tensorflow-gpu==2.6.0',
+    packages=['tensorflow', 'tensorflow-gpu',
               'keras==2.6'
               'opencv-python~=4.5.5.64'
               'matplotlib~=3.5.1'
