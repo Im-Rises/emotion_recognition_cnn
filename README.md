@@ -209,6 +209,15 @@ Last step is to start the `remake_dataset.py` that will concatenate all FERPlus 
 [FER-2013](https://www.kaggle.com/msambare/fer2013)  
 [FERPLUS](https://github.com/microsoft/FERPlus)
 
+## GitHub Actions
+
+[![CodeQL](https://github.com/Im-Rises/emotion_recognition_cnn/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/Im-Rises/emotion_recognition_cnn/actions/workflows/codeql.yml)
+[![Python application](https://github.com/Im-Rises/emotion_recognition_cnn/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/Im-Rises/emotion_recognition_cnn/actions/workflows/python-app.yml)
+
+The project is set with a set of different scripts that do the following tasks:
+- CodeQl : Evaluate the quality of the code with the CodeQl tool.
+- Python application : Run the application with the Python application tool.
+
 ## Libraries
 
 Python :  
