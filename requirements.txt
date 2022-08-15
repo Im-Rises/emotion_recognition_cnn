@@ -1,6 +1,6 @@
 tensorflow==2.8.0
-tensorflow-gpu==2.8.0
-keras==2.6
+tensorflow-gpu
+keras==2.8.0
 opencv-python~=4.5.5.64
 matplotlib~=3.5.1
 numpy
