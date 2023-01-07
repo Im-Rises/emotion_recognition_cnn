@@ -11,6 +11,33 @@
 
 Deep Learning AI Emotion recognition made in python with Tensorflow/Keras and OpenCV.
 
+✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
+
+[➡️➡️➡️Try the AI directly in your Browser !!⬅️⬅️⬅️](https://im-rises.github.io/emotion-recognition-website)
+
+✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
+
+## Table of Contents
+
+1. [Expression Recognition](#expression-recognition)
+    1. [Features](#features)
+2. [Videos](#videos)
+3. [Report and Jupyter Notebook](#report-and-jupyter-notebook)
+4. [Installation](#installation)
+    1. [Quickstart Browser Version](#quickstart-browser-version)
+    2. [Quickstart Computer Version](#quickstart-computer-version)
+        1. [Requirements](#1-requirements)
+        2. [Cuda and cuDNN installation (only if you want to train your own model on your own NVidia GPU)](#2-cuda-and-cudnn-installation--only-if-you-want-to-train-your-own-model-)
+            1. [Windows](#windows)
+            2. [Linux](#linux)
+        3. [Train a model and use it](#3-train-a-model-and-use-it)
+5. [Databases](#databases)
+6. [GitHub Actions](#github-actions)
+7. [Libraries](#libraries)
+8. [Documentations](#documentations)
+9. [Bibliography](#bibliography)
+10. [Contributors](#contributors)
+
 ## Expression recognition
 
 The app is able to analyse facial expressions directly by analysing one image or by analysing frame by frame a video.  
@@ -85,19 +112,22 @@ Website emotion_recognition version :
 Firstly you need to install python. We recommend you python 3.6 to 3.9 because certain libraries weren't available to
 version above 3.9.
 
-If you just want to start the UI app, then just follow the `1. Requirements` instructions just below.
+If you just want to start the UI app, then just follow the [Requirements](#1-requirements) instructions just below.
 
-In the case you want to test the models and train them. We would advise you to follow the `1. Requirements`
-instructions below and the second set of
-instructions `2. CUDA and cuDNN installation (only if you want to train your own AI)`.
-**You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.
+In the case you want to test the models and train them. We would advise you to follow
+the [Requirements](#1-requirements)
+instructions below and the second set of instructions
+[2. CUDA and cuDNN installation (only if you want to train your own AI)](#2-cuda-and-cudnn-installation--only-if-you-want-to-train-your-own-model-).
 
-Once everything is installed, go to part `3. Train a model and use it` to train a model and test it.
+> **Note**
+> **You will need a good GPU to train the models** if you don't want the training to take more than 2 hours.
+
+Once everything is installed, go to part [3. Train a model and use it](#3-train-a-model-and-use-it) to train a model
+and test it.
 
 #### 1. Requirements
 
-To use the program, you need to install python first (version 3.8 advised).
-<https://www.python.org>
+To use the program, you need to install [python](https://www.python.org) first (version 3.8 advised).
 
 You can then install the required python packages. They are all listed in the requirements.txt file.
 To directly install them all, type the following command:
@@ -122,19 +152,19 @@ or
 py app.py
 ```
 
-If you don't want to use the browser UI version, you can use the python UI version
-in `emotion_recognition/prediction.py`.
-It works with open-cv and shows emotions directly in the terminal.
+If you don't want to use the [browser UI version](#quickstart-browser-version), you can use the 
+[python](https://www.python.org) UI version in `emotion_recognition/prediction.py`.
+It works with [open-cv](https://opencv.org) and shows emotions directly in the terminal.
 
 #### 2. CUDA and cuDNN installation (only if you want to train your own model)
 
-Before using the program, you should install CUDA and SDK to allow the program to run with the GPU and not the CPU.
+Before using the program, you should install [CUDA](https://developer.nvidia.com/cuda-downloads) and SDK to allow 
+the program to run with the GPU and not the CPU.
 The app needs a lot of processing, so to speed it we use the GPU instead of the CPU.
 
 > **Warning**
 > While programming we used different versions of tensorflow, CUDA etc... To know which version of Tensorflow use with
-> your version of CUDA, cudNN etc... check the following website.  
-<https://www.tensorflow.org/install/source#gpu>
+your version of CUDA, cudNN etc... check this [link](https://www.tensorflow.org/install/source#gpu)
 
 ##### Windows
 
@@ -220,23 +250,12 @@ The project is set with a set of different scripts that do the following tasks:
 
 ## Libraries
 
-Python :  
-<https://www.python.org>
-
-Tensorflow/Keras :  
-<https://www.tensorflow.org>
-
-OpenCV :  
-<https://opencv.org>
-
-OpenCV weights :  
-<https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml>
-
-Flask :  
-<https://flask.palletsprojects.com/en/2.1.x/>
-
-emojize :  
-<https://pypi.org/project/emoji/>
+- [Python](https://www.python.org)
+- [Tensorflow/Keras](https://www.tensorflow.org)
+- [OpenCV](https://opencv.org)
+- [OpenCV weights](https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml)
+- [Flask](https://flask.palletsprojects.com/en/2.1.x/)
+- [emojize](https://pypi.org/project/emoji/)
 
 ## Documentations
 
